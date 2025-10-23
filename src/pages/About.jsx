@@ -1,11 +1,12 @@
 import React from 'react'
 
-const About = () => {
+const Category = () => {
   return (
-    <div className='bg-[#0000ff]'>
-      About
+    <div>
+      
     </div>
   )
 }
 
-export default About
+export default Category
+

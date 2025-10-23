@@ -6,7 +6,7 @@ import Contact from './pages/Contact'
 import Products from './pages/Products'
 import About from './pages/About'
 import Cart from './pages/Cart'
-import { ProductProvider } from './Context/ProductContext'
+import { ProductProvider } from './Context/ProductContext.jsx'
 
 
 
