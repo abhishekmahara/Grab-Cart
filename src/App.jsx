@@ -6,7 +6,8 @@ import Contact from './pages/Contact'
 import Products from './pages/Products'
 import About from './pages/About'
 import Cart from './pages/Cart'
-import { ProductProvider } from './Context/ProductContext.jsx'
+import { ProductProvider } from './Contextt/ProductContext.jsx'
+import Footer from './Components/Footer.jsx'
 
 
 
@@ -25,6 +26,7 @@ const App = () => {
     <Route path='/contact' element={<Contact/>}></Route>
     <Route path='/products' element={<Products/>}></Route>
    </Routes>
+   <Footer/>
    </BrowserRouter>
       
    </ProductProvider>

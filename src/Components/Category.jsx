@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getData } from "../Context/ProductContext";
+import { getData } from "../Contextt/ProductContext";
 import { AiFillShopping, AiOutlineShopping} from "react-icons/ai";
 import { GiClothes, GiLipstick } from "react-icons/gi";
 import { IoHome, IoLaptopSharp } from "react-icons/io5";
@@ -48,11 +48,11 @@ const Category = () => {
 
   return (
     <div className="py-10">
-      <div className="max-w-7xl mx-auto flex flex-wrap justify-evenly gap-16">
+      <div className="max-w-7xl mx-auto flex flex-wrap justify-evenly gap-15">
         {categoryData.map((item, index) => (
           <button
             key={index}
-            className="flex flex-col items-center justify-center w-28 h-28  text-white rounded-2xl hover: transition-all duration-300 shadow-md hover:scale-105"
+            className="flex flex-col items-center justify-center w-28 h-28  text-white hover:transition-all duration-300  hover:scale-110"
           >
             {iconMapping[item]}
             <span className="capitalize mt-2 text-sm text-center">
