@@ -13,7 +13,7 @@ export const ProductProvider = ({ children }) => {
         const res = await fetch("https://dummyjson.com/products?limit=150");
         if (!res.ok) throw new Error("Failed to fetch products");
         const data = await res.json();
-        setProducts(data.products); // array of products
+        setProducts(data.products); 
       } catch (err) {
         setError(err.message);
       } finally {
