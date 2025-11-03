@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
 export const CartContext = createContext(null);
@@ -6,7 +6,8 @@ export const CartContext = createContext(null);
 export const CartProvider = ({ children }) => {
   const [cartItem, setCartItem] = useState([]);
 
-  // ✅ Add item to cart (supports custom quantity)
+
+  //  Add item to cart
   const addToCart = (product, quantity = 1) => {
     const itemInCart = cartItem.find((item) => item.id === product.id);
 
@@ -24,7 +25,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  
+  //  Update quantity (increase / decrease)
   const updateQuantity = (productId, action) => {
     setCartItem((prevCart) =>
       prevCart
@@ -41,7 +42,7 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // ✅ Remove item completely
+  //  Remove item completely
   const removeFromCart = (productId) => {
     setCartItem((prev) => prev.filter((item) => item.id !== productId));
     toast.error("Product removed from cart");
@@ -49,11 +50,12 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cartItem, addToCart, updateQuantity, removeFromCart }}
+      value={{ cartItem, setCartItem, addToCart, updateQuantity, removeFromCart }}
     >
       {children}
     </CartContext.Provider>
   );
 };
 
+// ✅ Custom hook
 export const useCart = () => useContext(CartContext);

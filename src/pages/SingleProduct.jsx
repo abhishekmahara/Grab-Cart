@@ -79,7 +79,7 @@ const SingleProduct = () => {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center items-center h-screen bg-gray-950">
+        <div className="flex justify-center items-center h-screen">
           <div className="w-16 h-16 border-4 border-transparent border-t-blue-500 border-l-blue-400 rounded-full animate-spin"></div>
         </div>
       )}
