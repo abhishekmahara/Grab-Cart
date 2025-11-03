@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useCart } from "../Contextt/CartContext";
-import logo from './assets/img/gclogo-removebg-preview.png';
+import logo from '../assets/img/gclogo-removebg-preview.png';
+
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
