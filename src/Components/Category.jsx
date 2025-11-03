@@ -27,7 +27,13 @@ const Category = () => {
         electronics: ["smartphones", "laptops"],
         "home-decoration": ["home-decoration", "furniture", "lighting"],
         beauty: ["fragrances", "skincare"],
-        clothing: [ "tops", "mens-shirts", "womens-dresses", "womens-shoes", "mens-shoes"],
+        clothing: [
+          "tops",
+          "mens-shirts",
+          "womens-dresses",
+          "womens-shoes",
+          "mens-shoes",
+        ],
         groceries: ["groceries"],
       };
 
@@ -46,20 +52,27 @@ const Category = () => {
   };
 
   return (
-    <div className="py-10">
-      <div className="max-w-7xl mx-auto flex flex-wrap justify-evenly gap-10">
-        {categoryData.map((item, index) => (
-          <button
-            key={index}
-            onClick={() => handleCategoryClick(item)}
-            className="flex flex-col items-center justify-center w-28 h-28 text-white hover:transition-all duration-300 hover:scale-110"
-          >
-            {iconMapping[item]}
-            <span className="capitalize mt-2 text-sm text-center">
-              {item.replace("-", " ")}
-            </span>
-          </button>
-        ))}
+    <div className="py-6 shadow-sm">
+      <div className="max-w-7xl mx-auto">
+        {/* Keep all items in a single line */}
+        <div className="flex justify-evenly items-center w-full gap-2 px-3 md:gap-6 flex-nowrap">
+          {categoryData.map((item, index) => (
+           <button
+  key={index}
+  onClick={() => handleCategoryClick(item)}
+  className="flex flex-col items-center justify-center w-15 h-13 md:w-24 md:h-24 text-white hover:text-blue-600 transition-transform duration-300 hover:scale-110"
+>
+  {iconMapping[item]}
+  <span
+    className="block w-full mt-2 text-[11px] md:text-base text-center truncate md:whitespace-normal md:overflow-visible"
+    title={item}
+  >
+    {item}
+  </span>
+</button>
+
+          ))}
+        </div>
       </div>
     </div>
   );

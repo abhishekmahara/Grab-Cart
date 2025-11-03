@@ -29,14 +29,14 @@ const ProductPage = () => {
     if (!loading && products.length > 0) {
       let results = [...products];
 
-      // 🔍 Apply search filter
+      //  Apply search filter
       if (searchQuery) {
         results = results.filter((p) =>
           p.title.toLowerCase().includes(searchQuery)
         );
       }
 
-      // 🏷️ Apply category filter from URL
+      //  Apply category filter from URL
       if (categoryQuery && groupMapping[categoryQuery]) {
         const groupCategories = groupMapping[categoryQuery];
         results = results.filter((p) =>
@@ -45,7 +45,7 @@ const ProductPage = () => {
         setSelectedCategory(categoryQuery);
       }
 
-      // 💰 Apply price filter
+      // Apply price filter
       results = results.filter(
         (p) =>
           Math.floor(p.price * 50) >= priceRange[0] &&
@@ -67,11 +67,11 @@ const ProductPage = () => {
       </h2>
 
       <div className="flex flex-col md:flex-row gap-6">
-        {/* 🧩 Filter Section */}
-        <div className="md:w-1/4 w-full h-[400px] bg-gray-900 p-4 rounded-lg shadow-lg">
+        {/*  Filter Section */}
+        <div className="md:w-1/4 sm:h-[250px] w-full h-[350px] bg-gray-900 p-4 rounded-lg shadow-lg !h-[250px] ">
           <h3 className="text-lg font-semibold mb-3">Filters</h3>
 
-          {/* 💰 Price Filter */}
+          {/* Price Filter */}
           <div className="mb-5">
             <h4 className="text-gray-300 mb-2">Price Range</h4>
             <div className="flex items-center gap-2">
@@ -107,7 +107,7 @@ const ProductPage = () => {
           </button>
         </div>
 
-        {/* 🛒 Product Grid */}
+        {/*  Product Grid */}
         <div className="md:w-3/4 w-full">
           {filteredProducts.length === 0 ? (
             <p>No products found.</p>
