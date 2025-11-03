@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 // import Logo from '../assets/Logo.png'
 import { FaFacebook, FaInstagram, FaPinterest, FaTwitterSquare } from 'react-icons/fa'
+import logo from './assets/img/gclogo-removebg-preview.png';
 
 const Footer = () => {
   return (
@@ -11,7 +12,7 @@ const Footer = () => {
         <div className='mb-6 md:mb-0'>
           <Link to={'/'} className="flex items-center h-12 overflow-hidden">
             <img
-              src="./src/assets/img/gclogo-removebg-preview.png"
+              src={logo}
               alt="Grabcart"
               className="h-full w-[130px] object-cover cursor-pointer"
             />
