@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { FaFacebook, FaInstagram, FaTwitterSquare } from 'react-icons/fa'
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitterSquare } from 'react-icons/fa'
 import logo from '../assets/img/gclogo-removebg-preview.png';
+import { IoLogoGithub } from 'react-icons/io';
+import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
@@ -46,9 +48,9 @@ const Footer = () => {
         <div className="mb-8 md:mb-0">
           <h3 className="text-xl font-semibold">Follow Us</h3>
           <div className="flex space-x-4 mt-3 text-2xl">
-            <a href="#" className="hover:text-blue-500 transition-all"><FaFacebook /></a>
-            <a href="#" className="hover:text-pink-500 transition-all"><FaInstagram /></a>
-            <a href="#" className="hover:text-sky-400 transition-all"><FaTwitterSquare /></a>
+            <a href="https://www.linkedin.com/in/abhishekmahara " className="hover:text-blue-500 transition-all"><FaLinkedin /></a>
+            <a href="https://x.com/abhishekmahara_" className="hover:text-pink-500 transition-all"><FaXTwitter /></a>
+            <a href="https://github.com/abhishekmahara" className="hover:text-sky-400 transition-all"><IoLogoGithub /></a>
           </div>
         </div>
 
