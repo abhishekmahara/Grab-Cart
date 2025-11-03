@@ -8,7 +8,7 @@ import Products from './pages/Products'
 import Cart from './pages/Cart'
 import { ProductProvider } from './Contextt/ProductContext.jsx'
 import Footer from './Components/Footer.jsx'
-import SingleProduct from './pages/singleProduct.jsx'
+import SingleProduct from './pages/SingleProduct.jsx'
 
 
 
