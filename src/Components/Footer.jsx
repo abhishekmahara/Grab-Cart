@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 // import Logo from '../assets/Logo.png'
 import { FaFacebook, FaInstagram, FaPinterest, FaTwitterSquare } from 'react-icons/fa'
-import logo from './assets/img/gclogo-removebg-preview.png';
+import logo from '../assets/img/gclogo-removebg-preview.png';
 
 const Footer = () => {
   return (
