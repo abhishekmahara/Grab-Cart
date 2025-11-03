@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Navbar from './Components/Navbar'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
@@ -9,6 +9,8 @@ import Cart from './pages/Cart'
 import { ProductProvider } from './Contextt/ProductContext.jsx'
 import Footer from './Components/Footer.jsx'
 import SingleProduct from './pages/singleProduct.jsx'
+
+
 
 
 
