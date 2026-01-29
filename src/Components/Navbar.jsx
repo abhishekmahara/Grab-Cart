@@ -119,7 +119,7 @@ const Navbar = () => {
 
       {/* Search Dropdown */}
       {showSearch && (
-        <div className="lg:hidden px-7 pb-4 pt-3 bg-gradient-to-r from-black via-neutral-900 to-gray-900">
+        <div className="lg:hidden px-3 pb-4 pt-3 bg-gradient-to-r from-black via-neutral-900 to-gray-900">
           <form onSubmit={handleSearch} className="mx-auto max-w-md">
             <div className="flex items-center bg-white rounded-3xl shadow-sm border border-gray-200">
               <input
