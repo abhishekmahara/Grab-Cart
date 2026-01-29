@@ -46,7 +46,7 @@ const Footer = () => {
 
         {/* Social Media */}
         <div className="mb-8 md:mb-0">
-          <h3 className="text-xl font-semibold">Follow Us</h3>
+          <h3 className="text-xl font-semibold">Follow</h3>
           <div className="flex space-x-4 mt-3 text-2xl">
             <a href="https://www.linkedin.com/in/abhishekmahara " className="hover:text-blue-500 transition-all"><FaLinkedin /></a>
             <a href="https://x.com/abhishekmahara_" className="hover:text-pink-500 transition-all"><FaXTwitter /></a>
@@ -54,26 +54,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Newsletter */}
-        <div>
-          <h3 className="text-xl font-semibold">Stay in the Loop</h3>
-          <p className="mt-2 text-sm">
-            Subscribe to get special offers, free giveaways, and more.
-          </p>
-          <form className="mt-4 flex">
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="w-full p-2 rounded-l-md bg-gray-800 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              type="submit"
-              className="bg-blue-600 hover:bg-blue-700 transition-colors text-white px-4 rounded-r-md"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
+       
       </div>
 
       {/* Bottom Section */}
