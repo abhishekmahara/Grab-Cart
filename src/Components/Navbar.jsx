@@ -39,7 +39,7 @@ const Navbar = () => {
           />
         </Link>
 
-        {/* ===== Desktop Search Bar (Improved UI) ===== */}
+        {/* Search Bar */}
         <form
           onSubmit={handleSearch}
           className="hidden lg:flex flex-grow max-w-lg"
@@ -61,7 +61,7 @@ const Navbar = () => {
           </div>
         </form>
 
-        {/* ===== Right Section ===== */}
+        {/* Right Section */}
         <div className="flex items-center gap-5">
           {/* Search Icon (Mobile + Tablet) */}
           <button
@@ -71,7 +71,7 @@ const Navbar = () => {
             <FaSearch />
           </button>
 
-          {/* Contact (Desktop only) */}
+          {/* Contact */}
           <NavLink
             to="/contact"
             className={({ isActive }) =>
@@ -117,31 +117,33 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* ===== Search Dropdown (Mobile + Tablet) ===== */}
+      {/* Search Dropdown */}
       {showSearch && (
-        <div className="lg:hidden px-4 pb-3 bg-neutral-900">
-          <form onSubmit={handleSearch} className="flex">
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search products..."
-              className="flex-1 px-4 py-2 rounded-l-lg text-black focus:outline-none"
-              autoFocus
-            />
-            <button
-              type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded-r-lg"
-            >
-              Go
-            </button>
+        <div className="lg:hidden px-7 pb-4 pt-3 bg-gradient-to-r from-black via-neutral-900 to-gray-900">
+          <form onSubmit={handleSearch} className="mx-auto max-w-md">
+            <div className="flex items-center bg-white rounded-3xl shadow-sm border border-gray-200">
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search products..."
+                className="flex-1 h-9 px-4 text-xs text-gray-700 rounded-l-2xl focus:outline-none"
+                autoFocus
+              />
+              <button
+                type="submit"
+                className="h-9 px-4 flex items-center justify-center rounded-3xl bg-gradient-to-r from-blue-600 to-blue-500 text-white"
+              >
+                <FaSearch className="text-xs" />
+              </button>
+            </div>
           </form>
         </div>
       )}
 
-      {/* ===== Mobile / Tablet Menu ===== */}
+      {/* Menu */}
       {menuOpen && (
-        <div className="lg:hidden flex flex-col items-center bg-neutral-900 text-white py-3 gap-3 rounded-b-2xl">
+        <div className="lg:hidden flex flex-col items-center bg-gradient-to-r from-black via-neutral-900 to-gray-900 text-white py-3 gap-3 rounded-b-2xl">
           <NavLink to="/contact" onClick={() => setMenuOpen(false)}>
             Contact
           </NavLink>
