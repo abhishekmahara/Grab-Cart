@@ -7,7 +7,7 @@ import { IoHome, IoLaptopSharp } from "react-icons/io5";
 
 const iconMapping = {
   electronics: <IoLaptopSharp size={35} />,
-  "home-decoration": <IoHome size={35} />,
+  lifestyle: <IoHome size={35} />,
   beauty: <GiLipstick size={35} />,
   clothing: <GiClothes size={35} />,
   groceries: <AiFillShopping size={35} />,
@@ -25,7 +25,7 @@ const Category = () => {
 
       const groups = {
         electronics: ["smartphones", "laptops"],
-        "home-decoration": ["home-decoration", "furniture", "lighting"],
+        lifestyle: ["home-decoration", "furniture", "lighting"],
         beauty: ["fragrances", "skincare"],
         clothing: [
           "tops",
@@ -54,23 +54,18 @@ const Category = () => {
   return (
     <div className="py-6 shadow-sm">
       <div className="max-w-7xl mx-auto">
-        {/* Keep all items in a single line */}
         <div className="flex justify-evenly items-center w-full gap-2 px-3 md:gap-6 flex-nowrap">
           {categoryData.map((item, index) => (
-           <button
-  key={index}
-  onClick={() => handleCategoryClick(item)}
-  className="flex flex-col items-center justify-center w-15 h-13 md:w-24 md:h-24 text-white hover:text-blue-600 transition-transform duration-300 hover:scale-110"
->
-  {iconMapping[item]}
-  <span
-    className="block w-full mt-2 text-[11px] md:text-base text-center truncate md:whitespace-normal md:overflow-visible"
-    title={item}
-  >
-    {item}
-  </span>
-</button>
-
+            <button
+              key={index}
+              onClick={() => handleCategoryClick(item)}
+              className="flex flex-col items-center justify-center w-15 h-13 md:w-24 md:h-24 text-white hover:text-blue-600 transition-transform duration-300 hover:scale-110"
+            >
+              {iconMapping[item]}
+              <span className="block w-full mt-2 text-[11px] md:text-base text-center capitalize">
+                {item}
+              </span>
+            </button>
           ))}
         </div>
       </div>

@@ -19,7 +19,7 @@ const Carousel = () => {
 
   if (error) return <p className="text-center text-red-500">{error}</p>;
 
-  // ✅ Filter only electronics
+  // Filter only electronics
   const electronics = products.filter(
     (product) =>
       product.category === "smartphones" ||
@@ -27,7 +27,7 @@ const Carousel = () => {
       product.category === "electronics"
   );
 
-  // ✅ Custom Arrows
+  // Custom Arrows
   const NextArrow = ({ onClick }) => (
     <div
       className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-10 cursor-pointer text-3xl text-gray-600 hover:text-blue-500 transition"
@@ -76,7 +76,7 @@ const Carousel = () => {
                 transition-all duration-300
               "
               >
-                {/* ✅ Left Text Section */}
+                {/* Text Section */}
                 <div className="text-center md:text-left space-y-4 md:space-y-5 max-w-[550px]">
                   <h3 className="text-gray-700 font-semibold text-xs sm:text-sm uppercase tracking-wide">
                     Powering the World with the Best Electronics
@@ -95,7 +95,7 @@ const Carousel = () => {
                   </button>
                 </div>
 
-                {/* ✅ Right Image Section */}
+                {/* Image Section */}
                 <div className="flex justify-center items-center w-full md:w-[400px]">
                   <img
                     src={item.images[0]}

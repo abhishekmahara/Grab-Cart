@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitterSquare } from 'react-icons/fa'
+import { FaLinkedin } from 'react-icons/fa'
 import logo from '../assets/img/gclogo-removebg-preview.png';
 import { IoLogoGithub } from 'react-icons/io';
 import { FaXTwitter } from 'react-icons/fa6';
@@ -10,7 +10,7 @@ const Footer = () => {
     <footer className="bg-gradient-to-r from-black via-gray-900 to-gray-900 text-gray-200 py-10 rounded-t-2xl shadow-[0_-1px_10px_rgba(0,0,0,0.3)]">
       <div className="max-w-7xl mx-auto px-4 md:flex md:justify-between md:space-x-8">
         
-        {/* Company Info */}
+        {/* Info */}
         <div className="mb-8 md:mb-0">
           <Link to="/" className="flex items-center h-12 overflow-hidden">
             <img
