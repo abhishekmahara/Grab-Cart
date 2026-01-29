@@ -127,12 +127,12 @@ const Navbar = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search products..."
-                className="flex-1 h-9 px-4 text-xs text-gray-700 rounded-l-2xl focus:outline-none"
+                className="flex-1 h-10 px-4 text-base text-gray-700 rounded-3xl focus:outline-none"
                 autoFocus
               />
               <button
                 type="submit"
-                className="h-9 px-4 flex items-center justify-center rounded-3xl bg-gradient-to-r from-blue-600 to-blue-500 text-white"
+                className="h-10 px-4 flex items-center justify-center rounded-3xl bg-gradient-to-r from-blue-600 to-blue-500 text-white"
               >
                 <FaSearch className="text-xs" />
               </button>
