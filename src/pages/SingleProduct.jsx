@@ -1,89 +1,136 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useCart } from '../Contextt/CartContext';
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useCart } from "../Contextt/CartContext";
 
 const SingleProduct = () => {
   const { id } = useParams();
-  const [singleProduct, setSingleProduct] = useState(null);
+  const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [activeImage, setActiveImage] = useState("");
   const { addToCart } = useCart();
 
-  // Fetch single product data
-  const getSingleProduct = async () => {
-    try {
-      const res = await axios.get(`https://dummyjson.com/products/${id}`);
-      setSingleProduct(res.data);
-    } catch (error) {
-      console.log('Error fetching product:', error);
-    }
-  };
-
   useEffect(() => {
-    getSingleProduct();
-    window.scrollTo(0, 0);
+    const fetchProduct = async () => {
+      const res = await axios.get(`https://dummyjson.com/products/${id}`);
+      setProduct(res.data);
+      setActiveImage(res.data.thumbnail);
+      window.scrollTo(0, 0);
+    };
+    fetchProduct();
   }, [id]);
 
+  if (!product) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="w-10 h-10 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+      </div>
+    );
+  }
+
   return (
-    <>
-      {singleProduct ? (
-        <div className="min-h-screen text-white flex flex-col lg:flex-row items-center lg:items-start justify-center gap-10 px-6 py-12 md:px-12 lg:p-20">
-          {/* Product image */}
-          <div className="bg-white rounded-2xl shadow-2xl p-4 flex justify-center">
+    <section className="min-h-screen  text-white px-6 lg:px-24 py-16">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20">
+
+        {/* LEFT – Image */}
+        <div>
+          <div className="bg-gradient-to-br from-white/90 to-white/80 rounded-3xl p-10 flex justify-center">
             <img
-              src={singleProduct.thumbnail}
-              alt={singleProduct.title}
-              className="w-60 sm:w-72 md:w-80 lg:w-96 h-auto rounded-xl object-contain"
+              src={activeImage}
+              alt={product.title}
+              className="w-96 object-contain transition-all duration-300"
             />
           </div>
 
-          {/* Product details */}
-          <div className="flex flex-col gap-4 sm:gap-6 w-full lg:w-2/3 text-center lg:text-left">
-            <h1 className="text-2xl sm:text-3xl font-bold">{singleProduct.title}</h1>
-            <div className="text-sm sm:text-lg text-gray-300 capitalize">
-              {singleProduct.category}
-            </div>
-            <p className="text-lg sm:text-xl font-semibold text-gray-100">
-              ₹{Math.floor(singleProduct.price * 50).toLocaleString('en-IN')}
-            </p>
-            <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-              {singleProduct.description}
-            </p>
-
-            {/* Quantity */}
-            <div className="flex items-center justify-center lg:justify-start gap-3 sm:gap-4">
-              <label
-                htmlFor="quantity"
-                className="text-sm sm:text-base font-medium text-gray-200"
-              >
-                Quantity:
-              </label>
-              <input
-                type="number"
-                min={1}
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
-                className="w-16 text-center bg-white text-black rounded-md py-1 px-2 border-none focus:outline-none focus:ring-2 focus:ring-gray-500"
-              />
-            </div>
-
-            {/* Add to Cart Button */}
-            <div className="flex justify-center lg:justify-start gap-4 mt-4">
+          {/* Gallery */}
+          <div className="flex gap-4 mt-6">
+            {product.images.map((img, i) => (
               <button
-                className="bg-gradient-to-r from-black to-gray-800 text-white px-5 py-2 rounded-xl mt-2 hover:scale-105 transition-transform duration-200"
-                onClick={() => addToCart(singleProduct, quantity)} // ✅ Pass quantity separately
+                key={i}
+                onClick={() => setActiveImage(img)}
+                className={`w-16 h-16 bg-white rounded-xl p-2 transition 
+                ${activeImage === img ? "ring-2 ring-white" : "opacity-60 hover:opacity-100"}`}
               >
-                Add to Cart
+                <img src={img} className="object-contain" />
               </button>
-            </div>
+            ))}
           </div>
         </div>
-      ) : (
-        <div className="flex justify-center items-center h-screen">
-          <div className="w-16 h-16 border-4 border-transparent border-t-blue-500 border-l-blue-400 rounded-full animate-spin"></div>
+
+        {/* RIGHT – Content */}
+        <div className="space-y-10">
+
+          {/* Title */}
+          <div>
+            <p className="text-sm text-gray-400 uppercase tracking-widest">
+              {product.brand}
+            </p>
+            <h1 className="text-4xl font-semibold tracking-tight mt-2">
+              {product.title}
+            </h1>
+          </div>
+
+          {/* Rating */}
+          <div className="text-sm text-gray-400">
+            ★ {product.rating} · {product.stock} available
+          </div>
+
+          {/* Price */}
+          <div>
+            <p className="text-3xl font-medium">
+              ₹{Math.floor(product.price * 50).toLocaleString("en-IN")}
+            </p>
+            <p className="text-sm text-gray-300 mt-1">
+              Incl. taxes · Free delivery
+            </p>
+          </div>
+
+          {/* Description */}
+          <p className="text-gray-300 leading-relaxed max-w-lg">
+            {product.description}
+          </p>
+
+          {/* Quantity */}
+          <div className="flex items-center gap-6">
+            <span className="text-sm text-gray-400">Quantity</span>
+            <input
+              type="number"
+              min={1}
+              value={quantity}
+              onChange={(e) => setQuantity(+e.target.value)}
+              className="w-20 bg-transparent border-b border-gray-600 text-center focus:outline-none focus:border-white"
+            />
+          </div>
+
+          {/* CTA */}
+          <button
+            onClick={() => addToCart(product, quantity)}
+            className="w-full bg-white text-black py-4 rounded-full text-lg font-medium hover:scale-[1.02] transition"
+          >
+            Add to Cart
+          </button>
+
+          {/* Info Row */}
+          <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10 text-sm text-gray-400">
+            <div>
+              <p className="font-medium text-white">Delivery</p>
+              <p>3–5 days</p>
+            </div>
+            <div>
+              <p className="font-medium text-white">Returns</p>
+              <p>7-day policy</p>
+            </div>
+            <div>
+              <p className="font-medium text-white">Warranty</p>
+              <p>1 year</p>
+            </div>
+          </div>
+
         </div>
-      )}
-    </>
+      </div>
+
+      
+    </section>
   );
 };
 

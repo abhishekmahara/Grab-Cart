@@ -220,7 +220,7 @@ const ProductPage = () => {
               {filteredProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="bg-white text-black rounded-xl p-3 shadow hover:scale-105 transition cursor-pointer"
+                  className="bg-gradient-to-r from-white/80 to-white/70 text-black rounded-xl p-3 shadow hover:scale-105 transition cursor-pointer"
                   onClick={() => navigate(`/products/${product.id}`)}
                 >
                   <img
@@ -237,8 +237,11 @@ const ProductPage = () => {
                       e.stopPropagation();
                       addToCart(product);
                     }}
-                    className="mt-2 w-full bg-black text-white py-2 rounded-lg"
-                  >
+                    className="mt-2 w-full bg-gradient-to-r
+                    from-black
+                    via-black/95
+                    to-black/80 text-white py-2 rounded-lg"
+                                    >
                     Add to Cart
                   </button>
                 </div>

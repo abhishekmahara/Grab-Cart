@@ -2,15 +2,19 @@ import React, { useEffect, useState } from "react";
 import { getData } from "../Contextt/ProductContext";
 import { useNavigate } from "react-router-dom";
 import { AiFillShopping } from "react-icons/ai";
-import { GiClothes, GiLipstick } from "react-icons/gi";
-import { IoHome, IoLaptopSharp } from "react-icons/io5";
+
+import { IoLaptopSharp } from "react-icons/io5";
+import { FaTshirt } from "react-icons/fa";
+import { RiInkBottleFill } from "react-icons/ri";
+import { PiChairFill } from "react-icons/pi";
+import { TbBasketFilled } from "react-icons/tb";
 
 const iconMapping = {
   electronics: <IoLaptopSharp size={35} />,
-  lifestyle: <IoHome size={35} />,
-  beauty: <GiLipstick size={35} />,
-  clothing: <GiClothes size={35} />,
-  groceries: <AiFillShopping size={35} />,
+  lifestyle: <PiChairFill size={35} />,
+  grooming: <RiInkBottleFill size={35} />,
+  clothing: <FaTshirt size={28}/>,
+  groceries: <TbBasketFilled size={35} />,
 };
 
 const Category = () => {
@@ -26,7 +30,7 @@ const Category = () => {
       const groups = {
         electronics: ["smartphones", "laptops"],
         lifestyle: ["home-decoration", "furniture", "lighting"],
-        beauty: ["fragrances", "skincare"],
+        grooming: ["fragrances", "skincare"],
         clothing: [
           "tops",
           "mens-shirts",

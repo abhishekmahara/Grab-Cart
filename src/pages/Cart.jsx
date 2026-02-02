@@ -41,7 +41,7 @@ const CartPage = () => {
           {cartItem.map((item) => (
             <div
               key={item.id}
-              className="flex items-center bg-gray-100 text-black rounded-lg shadow-md p-4 transition "
+              className="flex items-center bg-gradient-to-r from-white/80 to-white/70 text-black rounded-lg shadow-md p-4 transition "
             >
               <img
                 src={item.thumbnail}
@@ -58,7 +58,7 @@ const CartPage = () => {
 
               {/* Quantity & Remove */}
               <div className="flex flex-row items-center gap-4">
-                <div className="flex items-center gap-3 px-3 py-1 bg-gradient-to-r from-black to-gray-600 text-white rounded-md font-semibold">
+                <div className="flex items-center gap-3 px-3 py-1 bg-gradient-to-r from-black to-black/80 text-white rounded-md font-semibold">
                   <button
                     onClick={() => updateQuantity(item.id, "decrease")}
                     className="hover:text-blue-300 transition"
@@ -76,7 +76,7 @@ const CartPage = () => {
 
                 <button
                   onClick={() => removeFromCart(item.id)}
-                  className="p-2 bg-gradient-to-r from-red-500 to-red-400 rounded-md text-white hover:scale-105 transition"
+                  className="p-2 bg-gradient-to-r from-red-500 to-red-400/90 rounded-md text-white hover:scale-105 transition"
                 >
                   <FaTrash />
                 </button>
@@ -88,7 +88,7 @@ const CartPage = () => {
         {/* Summary & Delivery Section */}
         <div className="space-y-6">
           {/* Order Summary */}
-          <div className="bg-gray-100 text-black rounded-lg shadow-md p-6">
+          <div className="bg-gradient-to-r from-white/90 to-white/80 text-black rounded-lg shadow-md p-6">
             <h3 className="text-xl font-semibold mb-4 text-center">
               Order Summary
             </h3>
@@ -115,7 +115,7 @@ const CartPage = () => {
           </div>
 
           {/* Delivery Info */}
-          <div className="bg-gray-100 text-black rounded-lg shadow-md p-6">
+          <div className="bg-gradient-to-r from-white/90 to-white/80 text-black rounded-lg shadow-md p-6">
             <h3 className="text-xl font-semibold mb-4 text-center">
               Delivery Info
             </h3>

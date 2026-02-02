@@ -70,7 +70,7 @@ const Carousel = () => {
                 flex flex-col-reverse md:flex-row 
                 justify-center items-center 
                 gap-6 md:gap-10 
-                bg-white rounded-2xl shadow-lg 
+                bg-gradient-to-r from-white/80 to-white/70 rounded-2xl shadow-lg 
                 px-4 sm:px-8 md:px-12 py-6 sm:py-8
                 h-auto md:h-[420px] 
                 transition-all duration-300

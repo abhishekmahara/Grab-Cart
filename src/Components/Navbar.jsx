@@ -28,7 +28,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-black via-neutral-900 to-gray-900 py-3 shadow-xl rounded-b-2xl sticky top-0 z-50">
+    <nav className="sticky top-0 z-50
+  bg-black/85
+  backdrop-blur-xl backdrop-saturate-150
+  border-b border-white/10
+  shadow-[0_8px_30px_rgba(0,0,0,0.45)]
+  py-3 rounded-b-2xl">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between gap-4">
         {/* Logo */}
         <Link to="/" className="flex items-center h-12">
@@ -44,17 +49,17 @@ const Navbar = () => {
           onSubmit={handleSearch}
           className="hidden lg:flex flex-grow max-w-lg"
         >
-          <div className="flex w-full items-center bg-white rounded-3xl shadow-sm border border-gray-200 focus-within:ring-2 focus-within:ring-blue-500 transition">
+          <div className="flex w-full items-center bg-white/90 rounded-3xl shadow-sm border border-gray-200 focus-within:ring-2 focus-within:ring-blue-500 transition">
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search for products, brands and more"
-              className="flex-1 h-11 px-5 text-sm text-gray-700 rounded-l-full focus:outline-none"
+              className="flex-1 h-10 px-5 text-sm text-gray-700 rounded-l-full focus:outline-none"
             />
             <button
               type="submit"
-              className="h-11 px-5 flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:from-blue-700 hover:to-blue-600 transition"
+              className="h-10 px-5 flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:from-blue-700 hover:to-blue-600 transition"
             >
               <FaSearch className="text-sm" />
             </button>

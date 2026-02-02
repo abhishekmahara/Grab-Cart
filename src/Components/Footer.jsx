@@ -7,7 +7,14 @@ import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-black via-gray-900 to-gray-900 text-gray-200 py-10 rounded-t-2xl shadow-[0_-1px_10px_rgba(0,0,0,0.3)]">
+    <footer className="bg-black/85
+  backdrop-blur-xl backdrop-saturate-150
+  text-gray-200
+  py-10
+  rounded-t-2xl
+  border-t border-white/10
+  shadow-[0_-8px_25px_rgba(0,0,0,0.45)]
+">
       <div className="max-w-7xl mx-auto px-4 md:flex md:justify-between md:space-x-8">
         
         {/* Info */}
