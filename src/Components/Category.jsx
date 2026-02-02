@@ -12,7 +12,7 @@ import { TbBasketFilled } from "react-icons/tb";
 const iconMapping = {
   electronics: <IoLaptopSharp size={35} />,
   lifestyle: <PiChairFill size={35} />,
-  grooming: <RiInkBottleFill size={35} />,
+  beauty: <RiInkBottleFill size={35} />,
   clothing: <FaTshirt size={28}/>,
   groceries: <TbBasketFilled size={35} />,
 };
@@ -30,7 +30,7 @@ const Category = () => {
       const groups = {
         electronics: ["smartphones", "laptops"],
         lifestyle: ["home-decoration", "furniture", "lighting"],
-        grooming: ["fragrances", "skincare"],
+        beauty: ["fragrances", "skincare"],
         clothing: [
           "tops",
           "mens-shirts",
