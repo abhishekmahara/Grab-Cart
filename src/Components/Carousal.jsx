@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Category from "./Category";
 import { useNavigate } from "react-router-dom";
+import SaleBanner from "./SaleBanner";
+import { Button } from "./ui/button";
 
 const Carousel = () => {
   const { products, loading, error } = getData();
@@ -60,19 +62,19 @@ const Carousel = () => {
 
   return (
     <div className="w-full overflow-hidden">
-      <Category />
+      <SaleBanner/>
       <div className="relative">
         <Slider {...settings}>
           {electronics.slice(0, 7).map((item, index) => (
-            <div key={index} className="px-2 sm:px-4">
+            <div key={index}>
               <div
                 className="
                 flex flex-col-reverse md:flex-row 
                 justify-center items-center 
                 gap-6 md:gap-10 
-                bg-gradient-to-r from-white/80 to-white/70 rounded-2xl shadow-lg 
-                px-4 sm:px-8 md:px-12 py-6 sm:py-8
-                h-auto md:h-[420px] 
+                bg-white   
+                px-4 sm:px-8  py-6 sm:py-8
+                h-auto md:h-[500px] 
                 transition-all duration-300
               "
               >
@@ -87,12 +89,14 @@ const Carousel = () => {
                   <p className="text-gray-700 text-sm sm:text-base line-clamp-3">
                     {item.description}
                   </p>
-                  <button
+                  <Button
+                    variant="grabcart"
                     onClick={() => navigate(`/products/${item.id}`)}
-                    className="bg-gradient-to-r from-black to-gray-900 text-white px-5 py-2 rounded-xl cursor-pointer mt-2 hover:scale-105 transition-all"
+                    className="  px-5 py-2 mt-2 "
                   >
                     SHOP NOW
-                  </button>
+                  </Button>
+                  
                 </div>
 
                 {/* Image Section */}
@@ -108,6 +112,7 @@ const Carousel = () => {
           ))}
         </Slider>
       </div>
+      <Category/>
     </div>
   );
 };

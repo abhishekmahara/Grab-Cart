@@ -2,18 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getData } from "../Contextt/ProductContext";
 import { useCart } from "../Contextt/CartContext";
+import { Button } from "@/Components/ui/button";
 
 const groupMapping = {
-  electronics: ["smartphones", "laptops"],
-  lifestyle: ["home-decoration", "furniture", "lighting"],
-  beauty: ["fragrances", "skincare"],
-  clothing: [
-    "tops",
-    "mens-shirts",
-    "womens-dresses",
-    "womens-shoes",
-    "mens-shoes",
-  ],
+  electronics: ["smartphones", "laptops", "mobile-accessories"],
+  lifestyle: ["furniture", "kitchen-accessories"],
+  beauty: ["fragrances", "skin-care"],
+  clothing: ["mens-shirts", "mens-shoes", "mens-watches"],
   groceries: ["groceries"],
 };
 
@@ -37,44 +32,40 @@ const ProductPage = () => {
     if (!loading && products.length > 0) {
       let results = [...products];
 
-      // Search
       if (searchQuery) {
         results = results.filter((p) =>
-          p.title.toLowerCase().includes(searchQuery),
+          p.title.toLowerCase().includes(searchQuery)
         );
       }
 
-      // Category
       if (categoryQuery && groupMapping[categoryQuery]) {
         results = results.filter((p) =>
-          groupMapping[categoryQuery].includes(p.category.toLowerCase()),
+          groupMapping[categoryQuery].includes(p.category.toLowerCase())
         );
       }
 
-      // Price
       results = results.filter(
         (p) =>
           Math.floor(p.price * 50) >= priceRange[0] &&
-          Math.floor(p.price * 50) <= priceRange[1],
+          Math.floor(p.price * 50) <= priceRange[1]
       );
 
-      // Rating
       if (minRating > 0) {
         results = results.filter((p) => p.rating >= minRating);
       }
 
-      // Stock
       if (inStockOnly) {
         results = results.filter((p) => p.stock > 0);
       }
 
-      // Sorting
       if (sortBy === "low-high") {
         results.sort((a, b) => a.price - b.price);
       }
+
       if (sortBy === "high-low") {
         results.sort((a, b) => b.price - a.price);
       }
+
       if (sortBy === "rating") {
         results.sort((a, b) => b.rating - a.rating);
       }
@@ -93,59 +84,63 @@ const ProductPage = () => {
   ]);
 
   if (loading)
-    return <p className="text-center mt-10 text-white">Loading...</p>;
+    return (
+      <div className="flex items-center justify-center h-screen bg-white">
+        <p className="text-gray-500">Loading products...</p>
+      </div>
+    );
 
   return (
-    <div className="p-6 text-white">
-      <h2 className="text-2xl mb-6">
+    <div>
+     {/* Header */}
+     <div className="bg-blue-600 py-5 px-4 mb-10 lg:px-12"> 
+      <h2 className=" text-white text-3xl font-semibold px-3 tracking-tight uppercase mb-2">
         {categoryQuery
-          ? `Category: ${categoryQuery.replace("-", " ")}`
-          : `Search results for "${searchQuery}"`}
+          ? categoryQuery.replace("-", " ")
+          : `Search results`}
       </h2>
+      <p className="text-sm px-3 text-gray-100 ">
+        {filteredProducts.length} products
+      </p>
 
-      <div className="flex flex-col lg:flex-row gap-6">
-        {/* FILTER SECTION */}
-        <aside
-          className="
-              w-full lg:w-1/4
-              bg-gradient-to-b from-gray-950 to-gray-900
-              rounded-xl lg:rounded-2xl
-              border border-gray-800
-              shadow-xl
-              p-4 sm:p-5 lg:p-6
-              lg:sticky lg:top-24
-              lg:min-h-[calc(100vh-120px)]
-              md:max-h-[520px] md:overflow-y-auto
-            "
-        >
-          <h3 className="text-lg lg:text-xl font-semibold mb-4 lg:mb-6">
+      </div>
+    <div className="bg-white text-black min-h-screen  px-6 lg:px-16 py-10">
+      
+     
+
+      
+
+      <div className="flex flex-col lg:flex-row gap-16">
+
+        {/* FILTER SIDEBAR */}
+        <aside className="w-full lg:w-1/4 border-r border-gray-200 pr-8 h-fit lg:sticky lg:top-24">
+
+          <h3 className="text-sm uppercase tracking-widest mb-6 font-medium">
             Filters
           </h3>
 
-          <div className="border-b border-gray-800 mb-4 lg:mb-6" />
-
           {/* Sort */}
-          <div className="mb-4 lg:mb-6">
-            <label className="block text-xs sm:text-sm text-gray-400 mb-1.5">
+          <div className="mb-6">
+            <label className="block text-xs text-gray-500 mb-2">
               Sort by
             </label>
+
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white"
+              className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-black"
             >
               <option value="">Default</option>
-              <option value="low-high">Price: Low to High</option>
-              <option value="high-low">Price: High to Low</option>
+              <option value="low-high">Price: Low → High</option>
+              <option value="high-low">Price: High → Low</option>
               <option value="rating">Rating</option>
             </select>
           </div>
 
-          <div className="border-b border-gray-800 mb-4 lg:mb-6" />
-
           {/* Price */}
-          <div className="mb-4 lg:mb-6">
-            <p className="text-xs sm:text-sm text-gray-400 mb-2">Price Range</p>
+          <div className="mb-6">
+            <p className="text-xs text-gray-500 mb-2">Price Range</p>
+
             <div className="flex gap-2">
               <input
                 type="number"
@@ -153,103 +148,125 @@ const ProductPage = () => {
                 onChange={(e) =>
                   setPriceRange([Number(e.target.value), priceRange[1]])
                 }
-                className="w-1/2 bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white"
+                className="w-1/2 border border-gray-300 px-3 py-2 text-sm"
               />
+
               <input
                 type="number"
                 value={priceRange[1]}
                 onChange={(e) =>
                   setPriceRange([priceRange[0], Number(e.target.value)])
                 }
-                className="w-1/2 bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white"
+                className="w-1/2 border border-gray-300 px-3 py-2 text-sm"
               />
             </div>
           </div>
 
-          <div className="border-b border-gray-800 mb-4 lg:mb-6" />
-
           {/* Rating */}
-          <div className="mb-4 lg:mb-6">
-            <p className="text-xs sm:text-sm text-gray-400 mb-2">
-              Customer Rating
-            </p>
+          <div className="mb-6">
+            <p className="text-xs text-gray-500 mb-2">Customer Rating</p>
+
             <select
               value={minRating}
               onChange={(e) => setMinRating(Number(e.target.value))}
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white"
+              className="w-full border border-gray-300  px-3 py-2 text-sm"
             >
               <option value={0}>All</option>
-              <option value={3}>3 ★ & above</option>
-              <option value={4}>4 ★ & above</option>
+              <option value={3}>3★ & above</option>
+              <option value={4}>4★ & above</option>
             </select>
           </div>
 
-          <div className="border-b border-gray-800 mb-4 lg:mb-6" />
-
           {/* Stock */}
-          <div className="mb-6 flex items-center gap-3">
+          <div className="flex items-center gap-3 mb-8">
             <input
               type="checkbox"
               checked={inStockOnly}
               onChange={() => setInStockOnly(!inStockOnly)}
-              className="accent-blue-600 scale-110"
+              className="accent-black"
             />
-            <span className="text-sm text-gray-300">In stock only</span>
+
+            <span className="text-sm text-gray-600">
+              In stock only
+            </span>
           </div>
 
-          {/* Clear */}
-          <button
+          {/* Clear Filters */}
+          <Button variant="grabcart"
             onClick={() => {
               setPriceRange([0, 100000]);
               setSortBy("");
               setMinRating(0);
               setInStockOnly(false);
             }}
-            className="w-full py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 text-white text-sm font-medium"
+            className="w-full py-6"
           >
             Clear Filters
-          </button>
+          </Button>
         </aside>
 
-        {/*  PRODUCT GRID  */}
+        {/* PRODUCT GRID */}
         <section className="lg:w-3/4 w-full">
+
           {filteredProducts.length === 0 ? (
-            <p>No products found.</p>
+            <p className="text-gray-500">No products found.</p>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12">
+
               {filteredProducts.map((product) => (
+
                 <div
                   key={product.id}
-                  className="bg-gradient-to-r from-white/80 to-white/70 text-black rounded-xl p-3 shadow hover:scale-105 transition cursor-pointer"
+                  className="group cursor-pointer"
                   onClick={() => navigate(`/products/${product.id}`)}
                 >
-                  <img
-                    src={product.thumbnail}
-                    alt={product.title}
-                    className="w-full h-40 object-contain"
-                  />
-                  <h3 className="mt-2 font-medium truncate">{product.title}</h3>
-                  <p className="text-gray-700">
+
+                  {/* Image */}
+                  <div className="bg-gray-50 p-8 flex items-center justify-center group-hover:bg-gray-100 transition">
+
+                    <img
+                      src={product.thumbnail}
+                      alt={product.title}
+                      className="h-40 object-contain group-hover:scale-105 transition"
+                    />
+
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="mt-4 text-sm font-medium truncate">
+                    {product.title}
+                  </h3>
+
+                  {/* Price */}
+                  <p className="text-sm text-gray-600">
                     ₹{Math.floor(product.price * 50).toLocaleString("en-IN")}
                   </p>
+
+                  {/* Button */}
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       addToCart(product);
                     }}
-                    className="mt-2 w-full bg-gradient-to-r
-                    from-black
-                    via-black/95
-                    to-black/80 text-white py-2 rounded-lg"
-                                    >
+                    className="mt-3 w-full border border-black py-2 text-sm font-medium hover:bg-black hover:text-white transition"
+                  >
                     Add to Cart
                   </button>
+
                 </div>
+
               ))}
+
             </div>
+
           )}
+
         </section>
+
       </div>
+
+    </div>
     </div>
   );
 };

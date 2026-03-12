@@ -1,184 +1,205 @@
 import { useCart } from "../Contextt/CartContext";
 import { useNavigate } from "react-router-dom";
-import { FaTrash } from "react-icons/fa";
+import { RiDeleteBin7Line } from "react-icons/ri";
+import { Button } from "@/Components/ui/button";
 
 const CartPage = () => {
   const { cartItem, updateQuantity, removeFromCart } = useCart();
   const navigate = useNavigate();
 
-  // Calculate total amount including quantity
   const getTotal = () => {
     return cartItem
-      .reduce((sum, item) => sum + Math.floor(item.price * 50) * item.quantity, 0)
+      .reduce(
+        (sum, item) => sum + Math.floor(item.price * 50) * item.quantity,
+        0,
+      )
       .toLocaleString("en-IN");
   };
 
-  // If cart is empty
   if (cartItem.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen text-white ">
-        <h2 className="text-3xl mb-4 font-semibold tracking-wide">
-          Your Cart is Empty 🛒
-        </h2>
-        <p className="text-gray-300 mb-4">Looks like you haven’t added anything yet.</p>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-white text-black -mt-16">
+        <h2 className="text-3xl font-semibold mb-4">Your Cart is Empty</h2>
+        <p className="text-gray-500 mb-6">
+          Looks like you haven't added anything yet.
+        </p>
+
         <button
           onClick={() => navigate("/products")}
-          className="bg-gradient-to-r from-blue-600 to-blue-500 hover:scale-[1.05] px-6 py-2 rounded-lg font-semibold text-white transition-all"
+          className="px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-900 transition"
         >
-          Shop Now
+          Continue Shopping
         </button>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen text-white py-10 px-4 md:px-12">
-      <h2 className="text-3xl font-bold mb-8 text-center">Your Cart</h2>
+    <div className="min-h-screen bg-white text-black px-6 lg:px-20 py-12">
+      {/* Header */}
+      <h2 className="text-3xl font-semibold mb-10 tracking-tight uppercase">
+        Shopping Cart
+      </h2>
 
-      <div className="grid md:grid-cols-3 gap-8">
-        {/* Cart Items Section */}
-        <div className="md:col-span-2 space-y-6">
+      {/* FEATURES */}
+      <div className="grid md:grid-cols-3 gap-6 mb-10 text-sm">
+        <div className="border border-gray-200 p-4">
+          <p className="font-medium">Free Shipping</p>
+          <p className="text-gray-500">Free delivery on orders above ₹299</p>
+        </div>
+
+        <div className="border border-gray-200 p-4">
+          <p className="font-medium">Easy Returns</p>
+          <p className="text-gray-500">7-day hassle-free return policy</p>
+        </div>
+
+        <div className="border border-gray-200 p-4">
+          <p className="font-medium">Secure Checkout</p>
+          <p className="text-gray-500">100% protected payments</p>
+        </div>
+      </div>
+
+      <div className="grid lg:grid-cols-3 gap-16">
+        {/* CART ITEMS */}
+        <div className="lg:col-span-2 space-y-8">
           {cartItem.map((item) => (
             <div
               key={item.id}
-              className="flex items-center bg-gradient-to-r from-white/80 to-white/70 text-black rounded-lg shadow-md p-4 transition "
+              className="flex gap-6 border-b border-gray-200 pb-8"
             >
-              <img
-                src={item.thumbnail}
-                alt={item.title}
-                className="w-24 h-24 object-contain rounded-md"
-              />
-              <div className="ml-4 flex-1">
-                <h3 className="text-lg font-semibold">{item.title}</h3>
-                <p className="text-gray-500 text-sm">{item.category}</p>
-                <p className="text-blue-600 font-bold mt-1">
-                  ₹{Math.floor(item.price * 50).toLocaleString("en-IN")}
-                </p>
+              {/* Product Image */}
+              <div className="bg-gray-100 p-6  flex items-center justify-center w-32 h-32">
+                <img
+                  src={item.thumbnail}
+                  alt={item.title}
+                  className="object-contain h-full"
+                />
               </div>
 
-              {/* Quantity & Remove */}
-              <div className="flex flex-row items-center gap-4">
-                <div className="flex items-center gap-3 px-3 py-1 bg-gradient-to-r from-black to-black/80 text-white rounded-md font-semibold">
+              {/* Product Details */}
+              <div className="flex-1">
+                <h3 className="text-lg font-medium mb-1">{item.title}</h3>
+
+                <p className="text-sm text-gray-500 mb-2">
+                  Category: {item.category}
+                </p>
+
+                <p className="text-lg font-semibold mb-4">
+                  ₹{Math.floor(item.price * 50).toLocaleString("en-IN")}
+                </p>
+
+                {/* Quantity */}
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center border border-gray-300">
+                    <button
+                      onClick={() => updateQuantity(item.id, "decrease")}
+                      className="px-3 py-1 hover:bg-gray-100"
+                    >
+                      -
+                    </button>
+
+                    <span className="px-4">{item.quantity}</span>
+
+                    <button
+                      onClick={() => updateQuantity(item.id, "increase")}
+                      className="px-3 py-1 hover:bg-gray-100"
+                    >
+                      +
+                    </button>
+                  </div>
+
                   <button
-                    onClick={() => updateQuantity(item.id, "decrease")}
-                    className="hover:text-blue-300 transition"
+                    onClick={() => removeFromCart(item.id)}
+                    className="text-sm text-gray-500 hover:text-black flex items-center gap-2"
                   >
-                    -
-                  </button>
-                  <span>{item.quantity}</span>
-                  <button
-                    onClick={() => updateQuantity(item.id, "increase")}
-                    className="hover:text-blue-300 transition"
-                  >
-                    +
+                    <RiDeleteBin7Line /> Remove
                   </button>
                 </div>
-
-                <button
-                  onClick={() => removeFromCart(item.id)}
-                  className="p-2 bg-gradient-to-r from-red-500 to-red-400/90 rounded-md text-white hover:scale-105 transition"
-                >
-                  <FaTrash />
-                </button>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Summary & Delivery Section */}
-        <div className="space-y-6">
-          {/* Order Summary */}
-          <div className="bg-gradient-to-r from-white/90 to-white/80 text-black rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-semibold mb-4 text-center">
-              Order Summary
-            </h3>
-            <div className="flex justify-between mb-2">
-              <span>Items:</span>
+        {/* ORDER SUMMARY */}
+        <div className="space-y-8">
+          <div className="border border-gray-200 p-8">
+            <h3 className="text-xl font-semibold mb-6">Order Summary</h3>
+
+            <div className="flex justify-between text-sm mb-3">
+              <span>Items</span>
               <span>{cartItem.length}</span>
             </div>
-            <div className="flex justify-between mb-2">
-              <span>Subtotal:</span>
+
+            <div className="flex justify-between text-sm mb-3">
+              <span>Subtotal</span>
               <span>₹{getTotal()}</span>
             </div>
-            <div className="flex justify-between mb-4">
-              <span>Delivery:</span>
-              <span className="text-green-500">Free</span>
+
+            <div className="flex justify-between text-sm mb-4">
+              <span>Shipping</span>
+              <span className="text-slate-600">Free</span>
             </div>
-            <hr className="border-gray-400 mb-4" />
-            <div className="flex justify-between text-lg font-bold mb-6">
-              <span>Total:</span>
+
+            <hr className="mb-4" />
+
+            <div className="flex justify-between font-semibold text-lg mb-6">
+              <span>Total</span>
               <span>₹{getTotal()}</span>
             </div>
-            <button className="w-full bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 hover:scale-[1.03] transition-all text-white font-semibold py-2 rounded-lg">
-              Proceed to Checkout
-            </button>
+
+            <Button variant="grabcart" className="w-full py-5">
+              Checkout
+            </Button>
           </div>
 
-          {/* Delivery Info */}
-          <div className="bg-gradient-to-r from-white/90 to-white/80 text-black rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-semibold mb-4 text-center">
-              Delivery Info
-            </h3>
-            <form className="space-y-3">
-              <div>
-                <label className="font-medium">Full Name</label>
+          {/* DELIVERY INFO */}
+          <div className="border border-gray-200 p-8">
+            <h3 className="text-xl font-semibold mb-6">Delivery Information</h3>
+
+            <form className="space-y-4">
+              <input
+                type="text"
+                placeholder="Full Name"
+                className="w-full border border-gray-300 px-3 py-2 focus:outline-none focus:border-black"
+              />
+
+              <input
+                type="text"
+                placeholder="Address"
+                className="w-full border border-gray-300 px-3 py-2 focus:outline-none focus:border-black"
+              />
+
+              <div className="grid grid-cols-2 gap-4">
                 <input
                   type="text"
-                  placeholder="Enter your name"
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  placeholder="State"
+                  className="border border-gray-300 px-3 py-2 focus:outline-none focus:border-black"
+                />
+
+                <input
+                  type="text"
+                  placeholder="Postcode"
+                  className="border border-gray-300 px-3 py-2 focus:outline-none focus:border-black"
                 />
               </div>
 
-              <div>
-                <label className="font-medium">Address</label>
+              <div className="grid grid-cols-2 gap-4">
                 <input
                   type="text"
-                  placeholder="Enter your address"
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  placeholder="Country"
+                  className="border border-gray-300 px-3 py-2 focus:outline-none focus:border-black"
                 />
-              </div>
 
-              <div className="flex flex-row gap-4">
-                <div className="flex-1">
-                  <label className="font-medium">State</label>
-                  <input
-                    type="text"
-                    placeholder="Enter your state"
-                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  />
-                </div>
-                <div className="flex-1">
-                  <label className="font-medium">Postcode</label>
-                  <input
-                    type="text"
-                    placeholder="Enter your postcode"
-                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-row gap-4">
-                <div className="flex-1">
-                  <label className="font-medium">Country</label>
-                  <input
-                    type="text"
-                    placeholder="Enter your country"
-                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  />
-                </div>
-                <div className="flex-1">
-                  <label className="font-medium">Phone Number</label>
-                  <input
-                    type="text"
-                    placeholder="Enter your number"
-                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  />
-                </div>
+                <input
+                  type="text"
+                  placeholder="Phone Number"
+                  className="border border-gray-300 px-3 py-2 focus:outline-none focus:border-black"
+                />
               </div>
 
               <button
                 type="button"
-                className="w-full bg-gradient-to-r from-green-600 to-green-400 hover:scale-[1.03] transition-all text-white font-semibold py-2 rounded-lg"
+                className="w-full border border-black py-3 hover:bg-black hover:text-white transition"
               >
                 Save Address
               </button>

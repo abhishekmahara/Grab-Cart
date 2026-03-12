@@ -8,6 +8,8 @@ import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import { ProductProvider } from "./Contextt/ProductContext";
 import { CartProvider } from "./Contextt/CartContext";
+import BrandStory from "./Components/BrandStory";
+import ScrollToTop from "./Components/ui/ScrollToTop";
 
 const App = () => {
   return (
@@ -15,10 +17,12 @@ const App = () => {
       <CartProvider>
         <BrowserRouter>
           <Navbar />
+             <ScrollToTop />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<SingleProduct />} />
+            <Route path="/brand-story" element={<BrandStory />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>

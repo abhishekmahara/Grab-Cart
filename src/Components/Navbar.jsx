@@ -6,14 +6,17 @@ import {
 } from "@clerk/clerk-react";
 import React, { useState } from "react";
 import { FaShoppingCart, FaSearch } from "react-icons/fa";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../Contextt/CartContext";
-import logo from "../assets/img/gclogo-removebg-preview.png";
+import logo from "../assets/img/logo.png";
+import { IoBagOutline } from "react-icons/io5";
+import { IoIosSearch } from "react-icons/io";
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+
   const navigate = useNavigate();
   const { cartItem } = useCart();
 
@@ -23,145 +26,138 @@ const Navbar = () => {
       navigate(`/products?search=${query}`);
       setQuery("");
       setShowSearch(false);
-      setMenuOpen(false);
     }
   };
 
   return (
-    <nav className="sticky top-0 z-50
-  bg-black/85
-  backdrop-blur-xl backdrop-saturate-150
-  border-b border-white/10
-  shadow-[0_8px_30px_rgba(0,0,0,0.45)]
-  py-3 rounded-b-2xl">
-      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between gap-4">
-        {/* Logo */}
-        <Link to="/" className="flex items-center h-12">
-          <img
-            src={logo}
-            alt="Grabcart"
-            className="h-full w-[130px] object-cover"
-          />
-        </Link>
+    <>
+      {/* NAVBAR */}
+      <nav className="sticky top-0 z-40 bg-white">
+        <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between h-16">
 
-        {/* Search Bar */}
-        <form
-          onSubmit={handleSearch}
-          className="hidden lg:flex flex-grow max-w-lg"
-        >
-          <div className="flex w-full items-center bg-white/90 rounded-3xl shadow-sm border border-gray-200 focus-within:ring-2 focus-within:ring-blue-500 transition">
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search for products, brands and more"
-              className="flex-1 h-10 px-5 text-sm text-gray-700 rounded-l-full focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="h-10 px-5 flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:from-blue-700 hover:to-blue-600 transition"
-            >
-              <FaSearch className="text-sm" />
-            </button>
-          </div>
-        </form>
-
-        {/* Right Section */}
-        <div className="flex items-center gap-5">
-          {/* Search Icon (Mobile + Tablet) */}
-          <button
-            className="lg:hidden text-white text-xl"
-            onClick={() => setShowSearch(!showSearch)}
-          >
-            <FaSearch />
-          </button>
-
-          {/* Contact */}
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              `${
-                isActive
-                  ? "bg-gradient-to-r from-blue-700 via-blue-400 to-blue-300 bg-clip-text text-transparent"
-                  : "text-white"
-              } hidden lg:block text-lg font-medium`
-            }
-          >
-            Contact
-          </NavLink>
-
-          {/* Cart */}
-          <Link to="/cart" className="relative">
-            <FaShoppingCart className="size-6 text-white" />
-            {cartItem.length > 0 && (
-              <span className="absolute -top-2 left-3 bg-white text-black text-[10px] font-bold rounded-full px-1.5 py-0.5">
-                {cartItem.length}
-              </span>
-            )}
+          {/* Logo */}
+          <Link to="/">
+            <img src={logo} alt="Grabcart" className="h-25" />
           </Link>
 
-          {/* Auth (Desktop only) */}
-          <div className="hidden lg:block">
-            <SignedOut>
-              <SignInButton className="h-10 px-6 rounded-full bg-gradient-to-r from-blue-600 to-blue-500   text-m text-white shadow-sm">
-                Sign in
-              </SignInButton>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
+          {/* Right icons */}
+          <div className="flex items-center gap-8">
+
+            {/* Search Icon */}
+            <button
+              onClick={() => setShowSearch(!showSearch)}
+              className="text-2xl  text-black hover:text-blue-700"
+            >
+             <IoIosSearch />
+            </button>
+
+            {/* Cart */}
+            <Link to="/cart" className="relative">
+              <IoBagOutline className="text-xl  text-black hover:text-blue-700" />
+
+              {cartItem.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-black text-white text-[10px] px-1.5 rounded-full">
+                  {cartItem.length}
+                </span>
+              )}
+            </Link>
+
+            {/* Menu Button */}
+            <button
+              onClick={() => setMenuOpen(true)}
+              className="text-xl text-blue-600"
+            >
+              ☰
+            </button>
+
           </div>
-
-          {/* Hamburger */}
-          <button
-            className="lg:hidden text-white text-2xl"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            ☰
-          </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Search Dropdown */}
+      {/* SEARCH BAR */}
       {showSearch && (
-        <div className="lg:hidden px-3 pb-4 pt-3 bg-gradient-to-r from-black via-neutral-900 to-gray-900">
-          <form onSubmit={handleSearch} className="mx-auto max-w-md">
-            <div className="flex items-center bg-white rounded-3xl shadow-sm border border-gray-200">
+        <div className="px-6 py-3 bg-white">
+          <form onSubmit={handleSearch} className="max-w-xl mx-auto">
+            <div className="flex items-center bg-gray-100 px-4 h-10">
+              <FaSearch className="text-gray-500 mr-2" />
+
               <input
                 type="text"
+                placeholder="Search products"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search products..."
-                className="flex-1 h-10 px-4 text-base text-gray-700 rounded-3xl focus:outline-none"
+                className="flex-1 bg-transparent outline-none text-sm"
                 autoFocus
               />
-              <button
-                type="submit"
-                className="h-10 px-4 flex items-center justify-center rounded-3xl bg-gradient-to-r from-blue-600 to-blue-500 text-white"
-              >
-                <FaSearch className="text-xs" />
-              </button>
             </div>
           </form>
         </div>
       )}
 
-      {/* Menu */}
+      {/* OVERLAY */}
       {menuOpen && (
-        <div className="lg:hidden flex flex-col items-center bg-gradient-to-r from-black via-neutral-900 to-gray-900 text-white py-3 gap-3 rounded-b-2xl">
-          <NavLink to="/contact" onClick={() => setMenuOpen(false)}>
-            Contact
-          </NavLink>
-
-          <SignedOut>
-            <SignInButton className="bg-gradient-to-r from-blue-600 to-blue-500 font-normal rounded-3xl text-white px-4 py-1" />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-        </div>
+        <div
+          onClick={() => setMenuOpen(false)}
+          className="fixed inset-0 bg-black/40 z-40"
+        />
       )}
-    </nav>
+
+      {/* RIGHT SIDE DRAWER */}
+      <div
+        className={`fixed top-0 right-0 h-full w-[320px] bg-white z-50 transform transition-transform duration-300 ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="p-6 flex flex-col h-full">
+
+          {/* Close button */}
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="self-end text-xl mb-6"
+          >
+            ✕
+          </button>
+
+          {/* Contact */}
+          <Link
+            to="/contact"
+            onClick={() => setMenuOpen(false)}
+            className="text-lg font-medium mb-6"
+          >
+            Contact
+          </Link>
+
+          {/* About Us */}
+           <Link
+            to="/brand-story"
+            onClick={() => setMenuOpen(false)}
+            className="text-lg font-medium mb-6"
+          >
+            About Us
+          </Link>
+
+          {/* Auth Section */}
+          <div className="flex gap-3">
+
+            <SignedOut>
+              <SignInButton className="bg-black text-white px-4 py-2 rounded-full text-sm">
+                Sign Up
+              </SignInButton>
+
+              <SignInButton className="border px-4 py-2 rounded-full text-sm">
+                Login
+              </SignInButton>
+            </SignedOut>
+
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+
+          </div>
+
+        </div>
+      </div>
+    </>
   );
 };
 

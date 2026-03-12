@@ -1,3 +1,4 @@
+import { Button } from "@/Components/ui/button";
 import React, { useState } from "react";
 
 const Contact = () => {
@@ -15,6 +16,7 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (formData.name && formData.email && formData.message) {
       setSubmitted(true);
       setTimeout(() => setSubmitted(false), 3000);
@@ -23,76 +25,115 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen  flex items-center justify-center p-6">
-      <div className="max-w-3xl w-full bg-white/5 backdrop-blur-lg p-10 rounded-2xl shadow-2xl border border-white/10">
-        <h1 className="text-3xl md:text-4xl font-bold text-white text-center mb-6">
-          Contact <span className="text-blue-400">GrabCart</span>
-        </h1>
-        <p className="text-gray-300 text-center mb-8">
-          Have a question, feedback, or collaboration idea? We’d love to hear from you!
-        </p>
+    <section className="min-h-screen bg-white text-black px-6 lg:px-20 py-20">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20">
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        {/* LEFT SIDE */}
+        <div>
+          <h1 className="text-5xl font-bold uppercase tracking-tight mb-6">
+            Contact <span className="text-blue-600">GrabCart</span>
+          </h1>
+
+          <p className="text-gray-600 max-w-md mb-10 leading-relaxed">
+            Need help with orders, payments, or product information?
+            Our support team is ready to assist you. Send us a message and
+            we'll get back to you shortly.
+          </p>
+
+          <div className="space-y-6 text-sm">
+
+            <div>
+              <p className="font-semibold uppercase text-xs tracking-widest mb-1">
+                Customer Support
+              </p>
+              <p className="text-gray-600">support@grabcart.com</p>
+            </div>
+
+            <div>
+              <p className="font-semibold uppercase text-xs tracking-widest mb-1">
+                Business Inquiries
+              </p>
+              <p className="text-gray-600">business@grabcart.com</p>
+            </div>
+
+            <div>
+              <p className="font-semibold uppercase text-xs tracking-widest mb-1">
+                Working Hours
+              </p>
+              <p className="text-gray-600">Mon – Sat : 9:00 AM – 8:00 PM</p>
+            </div>
+
+          </div>
+        </div>
+
+        {/* RIGHT SIDE FORM */}
+        <form onSubmit={handleSubmit} className="space-y-8 max-w-md">
+
           {/* Name */}
           <div>
-            <label className="block text-gray-200 mb-2 text-sm font-medium">
+            <label className="text-xs uppercase tracking-widest text-gray-500">
               Your Name
             </label>
+
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
               placeholder="Enter your name"
-              className="w-full p-3 rounded-lg bg-white/10 text-white placeholder-gray-400 border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-black placeholder-gray-400"
             />
           </div>
 
           {/* Email */}
           <div>
-            <label className="block text-gray-200 mb-2 text-sm font-medium">
+            <label className="text-xs uppercase tracking-widest text-gray-500">
               Email Address
             </label>
+
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               placeholder="mail@example.com"
-              className="w-full p-3 rounded-lg bg-white/10 text-white placeholder-gray-400 border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-black placeholder-gray-400"
             />
           </div>
 
           {/* Message */}
           <div>
-            <label className="block text-gray-200 mb-2 text-sm font-medium">
+            <label className="text-xs uppercase tracking-widest text-gray-500">
               Message
             </label>
+
             <textarea
+              rows="4"
               name="message"
               value={formData.message}
               onChange={handleChange}
-              rows="4"
               placeholder="Write your message..."
-              className="w-full p-3 rounded-lg bg-white/10 text-white placeholder-gray-400 border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-black placeholder-gray-400"
             ></textarea>
           </div>
 
-          <button
+          {/* Button */}
+          <Button variant="grabcart"
             type="submit"
-            className="w-full bg-gradient-to-r from-black via-neutral-900 to-gray-900 text-white py-3 rounded-lg font-semibold text-lg hover:scale-105 transition-transform duration-200 shadow-lg"
+            className="w-full  py-5 text-sm uppercase tracking-wide "
           >
             Send Message
-          </button>
-        </form>
+          </Button>
 
-        {submitted && (
-          <p className="text-green-400 text-center mt-6 font-medium">
-            Thank you! Your message has been sent.
-          </p>
-        )}
+          {submitted && (
+            <div className="text-sm text-green-600 font-medium">
+              ✓ Message sent successfully. We'll contact you soon.
+            </div>
+          )}
+
+        </form>
       </div>
-    </div>
+    </section>
   );
 };
 
