@@ -24,7 +24,7 @@ const Category = () => {
 
   return (
     <div className="max-w-full mx-auto ">
-      <h1 className="text-white bg-blue-600 uppercase text-3xl font-semibold px-5 py-5">Category </h1>
+      <h1 className="text-white bg-blue-600 uppercase text-3xl font-semibold px-5 py-5">Categories</h1>
       <div className="grid grid-cols-2 md:grid-cols-5 gap-1">
         {categories.map((cat, index) => (
           <div

@@ -122,7 +122,7 @@ const Navbar = () => {
           <Link
             to="/contact"
             onClick={() => setMenuOpen(false)}
-            className="text-lg font-medium mb-6"
+            className="text-lg font-medium mb-6 uppercase"
           >
             Contact
           </Link>
@@ -131,7 +131,7 @@ const Navbar = () => {
            <Link
             to="/brand-story"
             onClick={() => setMenuOpen(false)}
-            className="text-lg font-medium mb-6"
+            className="text-lg font-medium mb-6 uppercase"
           >
             About Us
           </Link>
@@ -140,11 +140,11 @@ const Navbar = () => {
           <div className="flex gap-3">
 
             <SignedOut>
-              <SignInButton className="bg-black text-white px-4 py-2 rounded-full text-sm">
+              <SignInButton className="bg-blue-600 text-white px-4 py-2 text-sm">
                 Sign Up
               </SignInButton>
 
-              <SignInButton className="border px-4 py-2 rounded-full text-sm">
+              <SignInButton className="border px-4 py-2  text-sm hover:bg-black hover:text-white">
                 Login
               </SignInButton>
             </SignedOut>

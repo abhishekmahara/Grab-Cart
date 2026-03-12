@@ -92,7 +92,7 @@ const Carousel = () => {
                   <Button
                     variant="grabcart"
                     onClick={() => navigate(`/products/${item.id}`)}
-                    className="  px-5 py-2 mt-2 "
+                    className="px-5 py-5 mt-2 "
                   >
                     SHOP NOW
                   </Button>
