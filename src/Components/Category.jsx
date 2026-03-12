@@ -5,23 +5,23 @@ import { BsArrowRight } from "react-icons/bs";
 const categories = [
   {
     name: "electronics",
-    image: "src/assets/img/Electronics.jpg",
+    image: "../assets/img/Electronics.jpg",
   },
   {
     name: "lifestyle",
-    image: "src/assets/img/Lifestyle.jpg",
+    image: "../assets/img/Lifestyle.jpg",
   },
   {
     name: "beauty",
-    image: "src/assets/img/beauty.jpg",
+    image: "../assets/img/beauty.jpg",
   },
   {
     name: "clothing",
-    image: "src/assets/img/Clothing.jpg",
+    image: "../assets/img/Clothing.jpg",
   },
   {
     name: "groceries",
-    image: "src/assets/img/Groceries.jpg",
+    image: "../assets/img/Groceries.jpg",
   },
 ];
 

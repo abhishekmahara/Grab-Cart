@@ -37,7 +37,7 @@ const BrandStory = () => {
         {/* Logo */}
         <div className="flex justify-center mt-16 ">
           <img
-            src="src/assets/img/gclogo-removebg-preview.png"
+            src="../assets/img/gclogo-removebg-preview.png"
             alt="GrabCart"
             className="h-20"
           />
