@@ -23,11 +23,12 @@ const Features = () => {
               >
                 <feature.icon
                   className="h-11 w-11 text-white opacity-80 group-hover:opacity-100 transition"
+                  strokeWidth={1.2}
                   aria-hidden="true"
                 />
 
                 <div>
-                  <p className="text-white uppercase  text-lg tracking-wide">
+                  <p className="text-white uppercase text-lg tracking-wide">
                     {feature.text}
                   </p>
 
