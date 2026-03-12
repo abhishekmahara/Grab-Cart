@@ -1,3 +1,5 @@
+import logo from "../assets/img/gclogo-removebg-preview.png";
+
 const BrandStory = () => {
   return (
     <section className="bg-blue-600 text-white py-24 px-6">
@@ -37,7 +39,7 @@ const BrandStory = () => {
         {/* Logo */}
         <div className="flex justify-center mt-16 ">
           <img
-            src="../assets/img/gclogo-removebg-preview.png"
+            src={logo}
             alt="GrabCart"
             className="h-20"
           />

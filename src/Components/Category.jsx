@@ -1,28 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
+import electronicsImg from "../assets/img/Electronics.jpg";
+import lifestyleImg from "../assets/img/Lifestyle.jpg";
+import beautyImg from "../assets/img/beauty.jpg";
+import clothingImg from "../assets/img/Clothing.jpg";
+import groceriesImg from "../assets/img/Groceries.jpg";
 
 const categories = [
-  {
-    name: "electronics",
-    image: "../assets/img/Electronics.jpg",
-  },
-  {
-    name: "lifestyle",
-    image: "../assets/img/Lifestyle.jpg",
-  },
-  {
-    name: "beauty",
-    image: "../assets/img/beauty.jpg",
-  },
-  {
-    name: "clothing",
-    image: "../assets/img/Clothing.jpg",
-  },
-  {
-    name: "groceries",
-    image: "../assets/img/Groceries.jpg",
-  },
+  { name: "electronics", image: electronicsImg },
+  { name: "lifestyle", image: lifestyleImg },
+  { name: "beauty", image: beautyImg },
+  { name: "clothing", image: clothingImg },
+  { name: "groceries", image: groceriesImg },
 ];
 
 const Category = () => {
