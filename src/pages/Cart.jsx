@@ -24,12 +24,12 @@ const CartPage = () => {
           Looks like you haven't added anything yet.
         </p>
 
-        <button
+        <Button variant="grabcart"
           onClick={() => navigate("/products")}
-          className="px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-900 transition"
+          className="px-6 py-5 text-sm font-medium"
         >
           Continue Shopping
-        </button>
+        </Button>
       </div>
     );
   }

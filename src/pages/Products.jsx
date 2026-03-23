@@ -7,9 +7,10 @@ import { Button } from "@/Components/ui/button";
 const groupMapping = {
   electronics: ["smartphones", "laptops", "mobile-accessories"],
   lifestyle: ["furniture", "kitchen-accessories"],
-  beauty: ["fragrances", "skin-care"],
+  beauty: ["fragrances","beauty",
+"skin-care"],
   clothing: ["mens-shirts", "mens-shoes", "mens-watches"],
-  groceries: ["groceries"],
+  sports: ["sports-accessories"],
 };
 
 const ProductPage = () => {
@@ -93,8 +94,8 @@ const ProductPage = () => {
   return (
     <div>
       {/* Header */}
-      <div className="bg-blue-600 py-5 px-4 mb-10 lg:px-12">
-        <h2 className=" text-white text-3xl font-semibold px-3 tracking-tight uppercase mb-2">
+      <div className="bg-blue-600 py-4 px-4 mb-10 lg:px-12">
+        <h2 className=" text-white text-2xl font-semibold px-3 tracking-tight uppercase mb-2">
           {categoryQuery ? categoryQuery.replace("-", " ") : `Search results`}
         </h2>
         <p className="text-sm px-3 text-gray-100 ">

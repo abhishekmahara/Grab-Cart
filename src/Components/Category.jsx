@@ -5,14 +5,14 @@ import electronicsImg from "../assets/img/Electronics.jpg";
 import lifestyleImg from "../assets/img/Lifestyle.jpg";
 import beautyImg from "../assets/img/beauty.jpg";
 import clothingImg from "../assets/img/Clothing.jpg";
-import groceriesImg from "../assets/img/Groceries.jpg";
+import sportsImg from "../assets/img/sports.jpg";
 
 const categories = [
   { name: "electronics", image: electronicsImg },
   { name: "lifestyle", image: lifestyleImg },
   { name: "beauty", image: beautyImg },
   { name: "clothing", image: clothingImg },
-  { name: "groceries", image: groceriesImg },
+  { name: "sports", image: sportsImg },
 ];
 
 const Category = () => {
