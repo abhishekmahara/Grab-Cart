@@ -1,4 +1,4 @@
-import logo from "../assets/img/gclogo-removebg-preview.png";
+import logo from "@/assets/img/gclogo-removebg-preview.png";
 
 const BrandStory = () => {
   return (

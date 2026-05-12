@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getData } from "../Contextt/ProductContext";
-import { useCart } from "../Contextt/CartContext";
-import { Button } from "@/Components/ui/button";
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "@/components/ui/button";
+import { addToCart } from "@/features/cart/cartSlice";
 
 const groupMapping = {
   electronics: ["smartphones", "laptops", "mobile-accessories"],
   lifestyle: ["furniture", "kitchen-accessories"],
-  beauty: ["fragrances","beauty",
-"skin-care"],
+  beauty: ["fragrances", "beauty", "skin-care"],
   clothing: ["mens-shirts", "mens-shoes", "mens-watches"],
   sports: ["sports-accessories"],
 };
 
-const ProductPage = () => {
-  const { products, loading } = getData();
+const ProductsPage = () => {
+  const { products, loading } = useSelector((state) => state.products);
   const location = useLocation();
   const navigate = useNavigate();
-  const { addToCart } = useCart();
+  const dispatch = useDispatch();
 
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 100000]);
@@ -238,7 +237,7 @@ const ProductPage = () => {
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        addToCart(product);
+                        dispatch(addToCart(product));
                       }}
                       className="mt-3 w-full border border-black py-2 text-sm font-medium hover:bg-black hover:text-white transition"
                     >
@@ -255,4 +254,4 @@ const ProductPage = () => {
   );
 };
 
-export default ProductPage;
+export default ProductsPage;

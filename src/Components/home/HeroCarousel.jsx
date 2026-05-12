@@ -1,15 +1,15 @@
-import { getData } from "../Contextt/ProductContext";
+import { useSelector } from "react-redux";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import Category from "./Category";
+import CategorySection from "@/components/home/CategorySection";
 import { useNavigate } from "react-router-dom";
 import SaleBanner from "./SaleBanner";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 
-const Carousel = () => {
-  const { products, loading, error } = getData();
+const HeroCarousel = () => {
+  const { products, loading, error } = useSelector((state) => state.products);
   const navigate = useNavigate();
 
   if (loading)
@@ -112,9 +112,9 @@ const Carousel = () => {
           ))}
         </Slider>
       </div>
-      <Category/>
+      <CategorySection/>
     </div>
   );
 };
 
-export default Carousel;
+export default HeroCarousel;

@@ -1,21 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
-import electronicsImg from "../assets/img/Electronics.jpg";
-import lifestyleImg from "../assets/img/Lifestyle.jpg";
-import beautyImg from "../assets/img/beauty.jpg";
-import clothingImg from "../assets/img/Clothing.jpg";
-import sportsImg from "../assets/img/sports.jpg";
+import electronicsImg from "@/assets/img/Electronics.jpg";
+import lifestyleImg from "@/assets/img/Lifestyle.jpg";
+import beautyImg from "@/assets/img/beautysection.jpg";
+import clothingImg from "@/assets/img/Clothing.jpg";
+import sportsImg from "@/assets/img/sports.jpg";
 
 const categories = [
   { name: "electronics", image: electronicsImg },
   { name: "lifestyle", image: lifestyleImg },
-  { name: "beauty", image: beautyImg },
   { name: "clothing", image: clothingImg },
+  { name: "beauty", image: beautyImg },
   { name: "sports", image: sportsImg },
 ];
 
-const Category = () => {
+const CategorySection = () => {
   const navigate = useNavigate();
 
   const handleCategoryClick = (category) => {
@@ -56,4 +56,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default CategorySection;

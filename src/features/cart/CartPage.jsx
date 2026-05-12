@@ -1,11 +1,17 @@
-import { useCart } from "../Contextt/CartContext";
+import { useClerk, useUser } from "@clerk/clerk-react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RiDeleteBin7Line } from "react-icons/ri";
-import { Button } from "@/Components/ui/button";
+import { toast } from "react-toastify";
+import { Button } from "@/components/ui/button";
+import { removeFromCart, updateQuantity } from "@/features/cart/cartSlice";
 
 const CartPage = () => {
-  const { cartItem, updateQuantity, removeFromCart } = useCart();
+  const cartItem = useSelector((state) => state.cart.cartItem);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { openSignIn } = useClerk();
+  const { isSignedIn } = useUser();
 
   const getTotal = () => {
     return cartItem
@@ -14,6 +20,16 @@ const CartPage = () => {
         0,
       )
       .toLocaleString("en-IN");
+  };
+
+  const handleCheckout = () => {
+    if (!isSignedIn) {
+      toast.info("Please login first to checkout");
+      openSignIn();
+      return;
+    }
+
+    navigate("/order-success");
   };
 
   if (cartItem.length === 0) {
@@ -92,7 +108,14 @@ const CartPage = () => {
                 <div className="flex items-center gap-4">
                   <div className="flex items-center border border-gray-300">
                     <button
-                      onClick={() => updateQuantity(item.id, "decrease")}
+                      onClick={() =>
+                        dispatch(
+                          updateQuantity({
+                            productId: item.id,
+                            actionType: "decrease",
+                          }),
+                        )
+                      }
                       className="px-3 py-1 hover:bg-gray-100"
                     >
                       -
@@ -101,7 +124,14 @@ const CartPage = () => {
                     <span className="px-4">{item.quantity}</span>
 
                     <button
-                      onClick={() => updateQuantity(item.id, "increase")}
+                      onClick={() =>
+                        dispatch(
+                          updateQuantity({
+                            productId: item.id,
+                            actionType: "increase",
+                          }),
+                        )
+                      }
                       className="px-3 py-1 hover:bg-gray-100"
                     >
                       +
@@ -109,7 +139,7 @@ const CartPage = () => {
                   </div>
 
                   <button
-                    onClick={() => removeFromCart(item.id)}
+                    onClick={() => dispatch(removeFromCart(item.id))}
                     className="text-sm text-gray-500 hover:text-black flex items-center gap-2"
                   >
                     <RiDeleteBin7Line /> Remove
@@ -147,7 +177,11 @@ const CartPage = () => {
               <span>₹{getTotal()}</span>
             </div>
 
-            <Button variant="grabcart" className="w-full py-5">
+            <Button
+              variant="grabcart"
+              onClick={handleCheckout}
+              className="w-full py-5"
+            >
               Checkout
             </Button>
           </div>

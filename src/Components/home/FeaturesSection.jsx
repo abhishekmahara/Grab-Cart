@@ -8,7 +8,7 @@ const features = [
   { icon: Clock, text: "24/7 Support", subtext: "Dedicated customer service" },
 ];
 
-const Features = () => {
+const FeaturesSection = () => {
   return (
     <section className="bg-black border-t border-neutral-800 py-16 px-6">
       <div className="max-w-7xl mx-auto">
@@ -46,4 +46,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+export default FeaturesSection;

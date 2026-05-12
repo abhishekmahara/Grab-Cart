@@ -1,7 +1,7 @@
-import { Button } from "@/Components/ui/button";
+import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 
-const Contact = () => {
+const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -137,4 +137,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactPage;

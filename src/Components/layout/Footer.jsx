@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaLinkedin } from "react-icons/fa";
-import logo from "../assets/img/gclogo-removebg-preview.png";
+import logo from "@/assets/img/gclogo-removebg-preview.png";
 import { IoLogoGithub } from "react-icons/io";
 import { FaXTwitter } from "react-icons/fa6";
 

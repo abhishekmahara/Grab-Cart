@@ -1,15 +1,16 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useCart } from "../Contextt/CartContext";
-import { Button } from "@/Components/ui/button";
+import { useDispatch } from "react-redux";
+import { Button } from "@/components/ui/button";
+import { addToCart } from "@/features/cart/cartSlice";
 
-const SingleProduct = () => {
+const SingleProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState("");
-  const { addToCart } = useCart();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -31,29 +32,33 @@ const SingleProduct = () => {
 
   return (
     <section className="min-h-screen bg-white text-black px-6 lg:px-20 py-16">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-24">
         {/* LEFT – IMAGE AREA */}
-        <div className="flex gap-6">
+        <div className="flex flex-col-reverse gap-6 sm:flex-row">
           {/* Thumbnails */}
-          <div className="flex flex-col gap-4">
+          <div className="flex gap-4 overflow-x-auto sm:flex-col sm:overflow-visible">
             {product.images.map((img, i) => (
               <button
                 key={i}
                 onClick={() => setActiveImage(img)}
-                className={`w-16 h-16 border p-1 transition 
+                className={`h-16 w-16 shrink-0 border p-1 transition 
                 ${activeImage === img ? "border-black" : "border-gray-200"}`}
               >
-                <img src={img} className="object-contain w-full h-full" />
+                <img
+                  src={img}
+                  alt={`${product.title} thumbnail ${i + 1}`}
+                  className="h-full w-full object-contain"
+                />
               </button>
             ))}
           </div>
 
           {/* Main Image */}
-          <div className="flex-1 bg-gray-50  p-16 flex justify-center items-center">
+          <div className="flex min-h-[420px] flex-1 items-center justify-center bg-gray-50 p-8 sm:min-h-[520px] lg:min-h-[600px] lg:p-16">
             <img
               src={activeImage}
               alt={product.title}
-              className="max-h-[420px] object-contain"
+              className="h-full max-h-[360px] w-full object-contain sm:max-h-[460px] lg:max-h-[520px]"
             />
           </div>
         </div>
@@ -107,7 +112,7 @@ const SingleProduct = () => {
 
           {/* Add to Cart */}
           <Button variant="grabcart"
-            onClick={() => addToCart(product, quantity)}
+            onClick={() => dispatch(addToCart(product, quantity))}
             className="w-full uppercase bg-blue-600 text-white py-6  text-lg font-medium hover:bg-gray-900 transition"
           >
             Add to Cart
@@ -171,4 +176,4 @@ const SingleProduct = () => {
   );
 };
 
-export default SingleProduct;
+export default SingleProductPage;
