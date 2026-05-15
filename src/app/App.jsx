@@ -12,6 +12,7 @@ import OrderSuccessPage from "@/features/checkout/OrderSuccessPage";
 import BrandStory from "@/components/common/BrandStory";
 import ScrollToTop from "@/components/common/ScrollToTop";
 import { fetchProducts } from "@/features/products/productsSlice";
+import SizeGuidePage from "@/features/size/SizeGuidePage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/order-success" element={<OrderSuccessPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/size-guide" element={<SizeGuidePage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

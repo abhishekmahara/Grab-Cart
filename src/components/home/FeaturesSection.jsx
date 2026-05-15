@@ -2,7 +2,7 @@ import React from "react";
 import { Truck, Lock, RotateCcw, Clock } from "lucide-react";
 
 const features = [
-  { icon: Truck, text: "Free Shipping", subtext: "On orders over $100" },
+  { icon: Truck, text: "Free Shipping", subtext: "On all orders" },
   { icon: Lock, text: "Secure Payment", subtext: "100% protected payments" },
   { icon: RotateCcw, text: "Easy Returns", subtext: "10-day return policy" },
   { icon: Clock, text: "24/7 Support", subtext: "Dedicated customer service" },

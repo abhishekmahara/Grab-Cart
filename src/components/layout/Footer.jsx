@@ -1,100 +1,209 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaLinkedin } from "react-icons/fa";
-import logo from "@/assets/img/gclogo-removebg-preview.png";
 import { IoLogoGithub } from "react-icons/io";
 import { FaXTwitter } from "react-icons/fa6";
+import logo from "@/assets/img/gclogo-removebg-preview.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-neutral-400 border-t border-neutral-800 py-10">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
-        {/* Info */}
-        <div>
-          <Link to="/" className="flex items-center h-12  overflow-hidden">
-            <img src={logo} alt="Grabcart" className="h-full w-[120px] object-cover" />
-          </Link>
-
-          <p className="mt-6 text-sm tracking-wide">
-            Portfolio:{" "}
-            <a
-              href="https://abhishekmahara.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-white transition"
+    <footer className="border-t border-white/10 bg-black text-white">
+      
+      {/* MAIN FOOTER */}
+      <div className="mx-auto max-w-[85rem]  px-6 py-14 lg:px-10">
+        
+        {/* TOP */}
+        <div className="flex flex-col gap-12 border-b border-white/10 pb-12 lg:flex-row lg:items-start lg:justify-between">
+          
+          {/* LEFT */}
+          <div className="max-w-md">
+            <Link
+              to="/"
+              className="flex h-12 items-center overflow-hidden"
             >
-              abhishekmahara.in
-            </a>
-          </p>
+              <img
+                src={logo}
+                alt="Grabcart"
+                className="h-full w-[125px] object-cover"
+              />
+            </Link>
 
-          <p className="text-sm mt-1">Email: abhishekmahara9877@gmail.com</p>
-        </div>
+            <p className="mt-5 text-sm leading-relaxed text-white/50">
+              Modern ecommerce experience
+              inspired by premium fashion
+              and lifestyle brands.
+            </p>
 
-        {/* Customer Service */}
-        <div>
-          <h3 className="text-sm uppercase tracking-widest text-white font-semibold mb-6">
-            Customer Service
-          </h3>
-
-          <ul className="space-y-3 text-sm">
-            <li>
-              <NavLink
-                to="/contact"
-                className={({ isActive }) =>
-                  `${isActive ? "text-white" : "text-neutral-400"} hover:text-white transition`
-                }
+            {/* SOCIALS */}
+            <div className="mt-7 flex gap-5">
+              <a
+                href="https://www.linkedin.com/in/abhishekmahara"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg text-white/50 transition hover:scale-110 hover:text-white"
               >
-                Contact
-              </NavLink>
-            </li>
+                <FaLinkedin />
+              </a>
 
-            <li className="hover:text-white cursor-pointer transition">
-              Shipping & Returns
-            </li>
+              <a
+                href="https://x.com/abhishekmahara_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg text-white/50 transition hover:scale-110 hover:text-white"
+              >
+                <FaXTwitter />
+              </a>
 
-            <li className="hover:text-white cursor-pointer transition">
-              Size Guide
-            </li>
-          </ul>
-        </div>
+              <a
+                href="https://github.com/abhishekmahara"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg text-white/50 transition hover:scale-110 hover:text-white"
+              >
+                <IoLogoGithub />
+              </a>
+            </div>
+          </div>
 
-        {/* Social Media */}
-        <div>
-          <h3 className="text-sm uppercase tracking-widest text-white font-semibold mb-6">
-            Follow
-          </h3>
+          {/* RIGHT LINKS */}
+          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3">
+            
+          {/* EXPLORE */}
+<div>
+  <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-white/40">
+    Explore
+  </h3>
 
-          <div className="flex gap-6 text-xl">
-            <a
-              href="https://www.linkedin.com/in/abhishekmahara"
-              className="hover:text-white transition"
-            >
-              <FaLinkedin />
-            </a>
+  <ul className="space-y-3 text-sm">
+    <li>
+      <NavLink
+        to="/products"
+        className={({ isActive }) =>
+          isActive
+            ? "text-white"
+            : "text-white/60 hover:text-white transition"
+        }
+      >
+        All Products
+      </NavLink>
+    </li>
 
-            <a
-              href="https://x.com/abhishekmahara_"
-              className="hover:text-white transition"
-            >
-              <FaXTwitter />
-            </a>
+    <li>
+      <NavLink
+        to="/cart"
+        className={({ isActive }) =>
+          isActive
+            ? "text-white"
+            : "text-white/60 hover:text-white transition"
+        }
+      >
+        Shopping Cart
+      </NavLink>
+    </li>
 
-            <a
-              href="https://github.com/abhishekmahara"
-              className="hover:text-white transition"
-            >
-              <IoLogoGithub />
-            </a>
+   
+
+    <li>
+      <NavLink
+        to="/contact"
+        className={({ isActive }) =>
+          isActive
+            ? "text-white"
+            : "text-white/60 hover:text-white transition"
+        }
+      >
+        Help & Support
+      </NavLink>
+    </li>
+  </ul>
+</div>
+
+            {/* INFO */}
+            <div>
+              <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-white/40">
+                Info
+              </h3>
+
+              <ul className="space-y-3 text-sm">
+                <li>
+                  <NavLink
+                    to="/brand-story"
+                    className="text-white/60 transition hover:text-white"
+                  >
+                    About
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/contact"
+                    className="text-white/60 transition hover:text-white"
+                  >
+                    Contact
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/size-guide"
+                    className="text-white/60 transition hover:text-white"
+                  >
+                    Size Guide
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+
+            {/* DEVELOPER */}
+            <div>
+              <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-white/40">
+                Developer
+              </h3>
+
+              <ul className="space-y-3 text-sm">
+                <li>
+                  <a
+                    href="https://abhishekmahara.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/60 transition hover:text-white"
+                  >
+                    Portfolio
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="mailto:abhishekmahara9877@gmail.com"
+                    className="text-white/60 transition hover:text-white"
+                  >
+                    Email
+                  </a>
+                </li>
+
+                <li>
+                  <span className="text-white/40">
+                    Frontend Developer
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Section */}
-      <div className="mt-14 border-t border-neutral-800 pt-6 text-center text-sm text-neutral-500 tracking-wide">
-        <p>
-          © {new Date().getFullYear()}{" "}
-          <span className="text-white">Grabcart</span>. All rights reserved.
-        </p>
+        {/* BOTTOM */}
+        <div className="flex flex-col gap-4 pt-6 text-sm text-white/35 sm:flex-row sm:items-center sm:justify-between">
+          
+          <p>
+            © {new Date().getFullYear()} GrabCart.
+            All rights reserved.
+          </p>
+
+          <p className="uppercase tracking-[0.2em]">
+            Designed & Developed by
+            Abhishek Mahara
+          </p>
+        </div>
       </div>
     </footer>
   );

@@ -4,19 +4,29 @@ import { useNavigate } from "react-router-dom";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { toast } from "react-toastify";
 import { Button } from "@/components/ui/button";
-import { removeFromCart, updateQuantity } from "@/features/cart/cartSlice";
+import {
+  removeFromCart,
+  updateQuantity,
+} from "@/features/cart/cartSlice";
 
 const CartPage = () => {
-  const cartItem = useSelector((state) => state.cart.cartItem);
+  const cartItem = useSelector(
+    (state) => state.cart.cartItem,
+  );
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { openSignIn } = useClerk();
   const { isSignedIn } = useUser();
 
   const getTotal = () => {
     return cartItem
       .reduce(
-        (sum, item) => sum + Math.floor(item.price * 50) * item.quantity,
+        (sum, item) =>
+          sum +
+          Math.floor(item.price * 50) *
+            item.quantity,
         0,
       )
       .toLocaleString("en-IN");
@@ -24,7 +34,9 @@ const CartPage = () => {
 
   const handleCheckout = () => {
     if (!isSignedIn) {
-      toast.info("Please login first to checkout");
+      toast.info(
+        "Please login first to checkout",
+      );
       openSignIn();
       return;
     }
@@ -32,16 +44,24 @@ const CartPage = () => {
     navigate("/order-success");
   };
 
+  // EMPTY CART
   if (cartItem.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-white text-black -mt-16">
-        <h2 className="text-3xl font-semibold mb-4">Your Cart is Empty</h2>
-        <p className="text-gray-500 mb-6">
-          Looks like you haven't added anything yet.
+      <div className="flex min-h-screen flex-col items-center justify-center bg-white px-4 text-center text-black">
+        <h2 className="mb-4 text-2xl font-semibold sm:text-3xl">
+          Your Cart is Empty
+        </h2>
+
+        <p className="mb-6 text-sm text-gray-500 sm:text-base">
+          Looks like you haven't added
+          anything yet.
         </p>
 
-        <Button variant="grabcart"
-          onClick={() => navigate("/products")}
+        <Button
+          variant="grabcart"
+          onClick={() =>
+            navigate("/products")
+          }
           className="px-6 py-5 text-sm font-medium"
         >
           Continue Shopping
@@ -51,68 +71,102 @@ const CartPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white text-black px-6 lg:px-20 py-12">
-      {/* Header */}
-      <h2 className="text-3xl font-semibold mb-10 tracking-tight uppercase">
+    <div className="min-h-screen bg-white px-4 py-8 text-black sm:px-6 lg:px-20 lg:py-12">
+      
+      {/* HEADER */}
+      <h2 className="mb-8 text-2xl font-semibold uppercase tracking-tight sm:mb-10 sm:text-3xl">
         Shopping Cart
       </h2>
 
       {/* FEATURES */}
-      <div className="grid md:grid-cols-3 gap-6 mb-10 text-sm">
+      <div className="mb-10 grid gap-4 text-sm sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        
         <div className="border border-gray-200 p-4">
-          <p className="font-medium">Free Shipping</p>
-          <p className="text-gray-500">Free delivery on orders above ₹299</p>
+          <p className="font-medium">
+            Free Shipping
+          </p>
+
+          <p className="text-gray-500">
+            Free delivery on all orders
+          </p>
         </div>
 
         <div className="border border-gray-200 p-4">
-          <p className="font-medium">Easy Returns</p>
-          <p className="text-gray-500">7-day hassle-free return policy</p>
+          <p className="font-medium">
+            Easy Returns
+          </p>
+
+          <p className="text-gray-500">
+            7-day hassle-free return
+            policy
+          </p>
         </div>
 
         <div className="border border-gray-200 p-4">
-          <p className="font-medium">Secure Checkout</p>
-          <p className="text-gray-500">100% protected payments</p>
+          <p className="font-medium">
+            Secure Checkout
+          </p>
+
+          <p className="text-gray-500">
+            100% protected payments
+          </p>
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-16">
+      {/* MAIN GRID */}
+      <div className="grid gap-10 lg:grid-cols-3 lg:gap-16">
+        
         {/* CART ITEMS */}
-        <div className="lg:col-span-2 space-y-8">
+        <div className="space-y-6 lg:col-span-2 lg:space-y-8">
+          
           {cartItem.map((item) => (
             <div
               key={item.id}
-              className="flex gap-6 border-b border-gray-200 pb-8"
+              className="flex flex-col gap-5 border-b border-gray-200 pb-6 sm:flex-row sm:gap-6 sm:pb-8"
             >
-              {/* Product Image */}
-              <div className="bg-gray-100 p-6  flex items-center justify-center w-32 h-32">
+              
+              {/* IMAGE */}
+              <div className="flex h-32 w-full items-center justify-center bg-gray-100 p-4 sm:w-32">
                 <img
                   src={item.thumbnail}
                   alt={item.title}
-                  className="object-contain h-full"
+                  className="h-full object-contain"
                 />
               </div>
 
-              {/* Product Details */}
+              {/* DETAILS */}
               <div className="flex-1">
-                <h3 className="text-lg font-medium mb-1">{item.title}</h3>
+                
+                <h3 className="mb-1 text-base font-medium sm:text-lg">
+                  {item.title}
+                </h3>
 
-                <p className="text-sm text-gray-500 mb-2">
+                <p className="mb-2 text-sm text-gray-500">
                   Category: {item.category}
                 </p>
 
-                <p className="text-lg font-semibold mb-4">
-                  ₹{Math.floor(item.price * 50).toLocaleString("en-IN")}
+                <p className="mb-4 text-lg font-semibold">
+                  ₹
+                  {Math.floor(
+                    item.price * 50,
+                  ).toLocaleString(
+                    "en-IN",
+                  )}
                 </p>
 
-                {/* Quantity */}
-                <div className="flex items-center gap-4">
+                {/* QUANTITY */}
+                <div className="flex flex-wrap items-center gap-4">
+                  
                   <div className="flex items-center border border-gray-300">
+                    
                     <button
                       onClick={() =>
                         dispatch(
                           updateQuantity({
-                            productId: item.id,
-                            actionType: "decrease",
+                            productId:
+                              item.id,
+                            actionType:
+                              "decrease",
                           }),
                         )
                       }
@@ -121,14 +175,18 @@ const CartPage = () => {
                       -
                     </button>
 
-                    <span className="px-4">{item.quantity}</span>
+                    <span className="px-4">
+                      {item.quantity}
+                    </span>
 
                     <button
                       onClick={() =>
                         dispatch(
                           updateQuantity({
-                            productId: item.id,
-                            actionType: "increase",
+                            productId:
+                              item.id,
+                            actionType:
+                              "increase",
                           }),
                         )
                       }
@@ -139,10 +197,17 @@ const CartPage = () => {
                   </div>
 
                   <button
-                    onClick={() => dispatch(removeFromCart(item.id))}
-                    className="text-sm text-gray-500 hover:text-black flex items-center gap-2"
+                    onClick={() =>
+                      dispatch(
+                        removeFromCart(
+                          item.id,
+                        ),
+                      )
+                    }
+                    className="flex items-center gap-2 text-sm text-gray-500 hover:text-black"
                   >
-                    <RiDeleteBin7Line /> Remove
+                    <RiDeleteBin7Line />
+                    Remove
                   </button>
                 </div>
               </div>
@@ -150,31 +215,46 @@ const CartPage = () => {
           ))}
         </div>
 
-        {/* ORDER SUMMARY */}
-        <div className="space-y-8">
-          <div className="border border-gray-200 p-8">
-            <h3 className="text-xl font-semibold mb-6">Order Summary</h3>
+        {/* RIGHT SECTION */}
+        <div className="space-y-6 sm:space-y-8">
+          
+          {/* ORDER SUMMARY */}
+          <div className="border border-gray-200 p-5 sm:p-8">
+            
+            <h3 className="mb-6 text-lg font-semibold sm:text-xl">
+              Order Summary
+            </h3>
 
-            <div className="flex justify-between text-sm mb-3">
+            <div className="mb-3 flex justify-between text-sm">
               <span>Items</span>
-              <span>{cartItem.length}</span>
+              <span>
+                {cartItem.length}
+              </span>
             </div>
 
-            <div className="flex justify-between text-sm mb-3">
+            <div className="mb-3 flex justify-between text-sm">
               <span>Subtotal</span>
-              <span>₹{getTotal()}</span>
+              <span>
+                ₹{getTotal()}
+              </span>
             </div>
 
-            <div className="flex justify-between text-sm mb-4">
+            <div className="mb-4 flex justify-between text-sm">
               <span>Shipping</span>
-              <span className="text-slate-600">Free</span>
+
+              <span className="text-slate-600">
+                Free
+              </span>
             </div>
 
             <hr className="mb-4" />
 
-            <div className="flex justify-between font-semibold text-lg mb-6">
+            <div className="mb-6 flex justify-between text-lg font-semibold">
               <span>Total</span>
-              <span>₹{getTotal()}</span>
+
+              <span>
+                ₹{getTotal()}
+              </span>
             </div>
 
             <Button
@@ -187,53 +267,59 @@ const CartPage = () => {
           </div>
 
           {/* DELIVERY INFO */}
-          <div className="border border-gray-200 p-8">
-            <h3 className="text-xl font-semibold mb-6">Delivery Information</h3>
+          <div className="border border-gray-200 p-5 sm:p-8">
+            
+            <h3 className="mb-6 text-lg font-semibold sm:text-xl">
+              Delivery Information
+            </h3>
 
             <form className="space-y-4">
+              
               <input
                 type="text"
                 placeholder="Full Name"
-                className="w-full border border-gray-300 px-3 py-2 focus:outline-none focus:border-black"
+                className="w-full border border-gray-300 px-3 py-3 text-sm focus:border-black focus:outline-none"
               />
 
               <input
                 type="text"
                 placeholder="Address"
-                className="w-full border border-gray-300 px-3 py-2 focus:outline-none focus:border-black"
+                className="w-full border border-gray-300 px-3 py-3 text-sm focus:border-black focus:outline-none"
               />
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                
                 <input
                   type="text"
                   placeholder="State"
-                  className="border border-gray-300 px-3 py-2 focus:outline-none focus:border-black"
+                  className="border border-gray-300 px-3 py-3 text-sm focus:border-black focus:outline-none"
                 />
 
                 <input
                   type="text"
                   placeholder="Postcode"
-                  className="border border-gray-300 px-3 py-2 focus:outline-none focus:border-black"
+                  className="border border-gray-300 px-3 py-3 text-sm focus:border-black focus:outline-none"
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                
                 <input
                   type="text"
                   placeholder="Country"
-                  className="border border-gray-300 px-3 py-2 focus:outline-none focus:border-black"
+                  className="border border-gray-300 px-3 py-3 text-sm focus:border-black focus:outline-none"
                 />
 
                 <input
                   type="text"
                   placeholder="Phone Number"
-                  className="border border-gray-300 px-3 py-2 focus:outline-none focus:border-black"
+                  className="border border-gray-300 px-3 py-3 text-sm focus:border-black focus:outline-none"
                 />
               </div>
 
               <button
                 type="button"
-                className="w-full border border-black py-3 hover:bg-black hover:text-white transition"
+                className="w-full border border-black py-3 text-sm transition hover:bg-black hover:text-white"
               >
                 Save Address
               </button>
