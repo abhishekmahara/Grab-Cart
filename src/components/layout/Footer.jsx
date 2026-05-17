@@ -4,23 +4,18 @@ import { FaLinkedin } from "react-icons/fa";
 import { IoLogoGithub } from "react-icons/io";
 import { FaXTwitter } from "react-icons/fa6";
 import logo from "@/assets/img/gclogo-removebg-preview.png";
+import { toast } from "react-toastify";
 
 const Footer = () => {
   return (
     <footer className="border-t border-white/10 bg-black text-white">
-      
       {/* MAIN FOOTER */}
       <div className="mx-auto max-w-[85rem]  px-6 py-14 lg:px-10">
-        
         {/* TOP */}
         <div className="flex flex-col gap-12 border-b border-white/10 pb-12 lg:flex-row lg:items-start lg:justify-between">
-          
           {/* LEFT */}
           <div className="max-w-md">
-            <Link
-              to="/"
-              className="flex h-12 items-center overflow-hidden"
-            >
+            <Link to="/" className="flex h-12 items-center overflow-hidden">
               <img
                 src={logo}
                 alt="Grabcart"
@@ -29,9 +24,8 @@ const Footer = () => {
             </Link>
 
             <p className="mt-5 text-sm leading-relaxed text-white/50">
-              Modern ecommerce experience
-              inspired by premium fashion
-              and lifestyle brands.
+              Modern ecommerce experience inspired by premium fashion and
+              lifestyle brands.
             </p>
 
             {/* SOCIALS */}
@@ -67,56 +61,53 @@ const Footer = () => {
 
           {/* RIGHT LINKS */}
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3">
-            
-          {/* EXPLORE */}
-<div>
-  <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-white/40">
-    Explore
-  </h3>
+            {/* EXPLORE */}
+            <div>
+              <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-white/40">
+                Explore
+              </h3>
 
-  <ul className="space-y-3 text-sm">
-    <li>
-      <NavLink
-        to="/products"
-        className={({ isActive }) =>
-          isActive
-            ? "text-white"
-            : "text-white/60 hover:text-white transition"
-        }
-      >
-        All Products
-      </NavLink>
-    </li>
+              <ul className="space-y-3 text-sm">
+                <li>
+                  <NavLink
+                    to="/products"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-white"
+                        : "text-white/60 hover:text-white transition"
+                    }
+                  >
+                    All Products
+                  </NavLink>
+                </li>
 
-    <li>
-      <NavLink
-        to="/cart"
-        className={({ isActive }) =>
-          isActive
-            ? "text-white"
-            : "text-white/60 hover:text-white transition"
-        }
-      >
-        Shopping Cart
-      </NavLink>
-    </li>
+                <li>
+                  <NavLink
+                    to="/cart"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-white"
+                        : "text-white/60 hover:text-white transition"
+                    }
+                  >
+                    Shopping Cart
+                  </NavLink>
+                </li>
 
-   
-
-    <li>
-      <NavLink
-        to="/contact"
-        className={({ isActive }) =>
-          isActive
-            ? "text-white"
-            : "text-white/60 hover:text-white transition"
-        }
-      >
-        Help & Support
-      </NavLink>
-    </li>
-  </ul>
-</div>
+                <li>
+                  <NavLink
+                    to="/terms"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-white"
+                        : "text-white/60 hover:text-white transition"
+                    }
+                  >
+                    Terms of Service
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
 
             {/* INFO */}
             <div>
@@ -127,7 +118,7 @@ const Footer = () => {
               <ul className="space-y-3 text-sm">
                 <li>
                   <NavLink
-                    to="/brand-story"
+                    to="/about"
                     className="text-white/60 transition hover:text-white"
                   >
                     About
@@ -174,7 +165,16 @@ const Footer = () => {
 
                 <li>
                   <a
-                    href="mailto:abhishekmahara9877@gmail.com"
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+
+                      navigator.clipboard.writeText(
+                        "abhishekmahara9877@gmail.com",
+                      );
+
+                      toast.success("Email copied to clipboard!");
+                    }}
                     className="text-white/60 transition hover:text-white"
                   >
                     Email
@@ -182,9 +182,19 @@ const Footer = () => {
                 </li>
 
                 <li>
-                  <span className="text-white/40">
-                    Frontend Developer
-                  </span>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+
+                      navigator.clipboard.writeText("7456894129");
+
+                      toast.success("Contact number copied!");
+                    }}
+                    className="text-white/60 transition hover:text-white"
+                  >
+                    Contact
+                  </a>
                 </li>
               </ul>
             </div>
@@ -193,15 +203,10 @@ const Footer = () => {
 
         {/* BOTTOM */}
         <div className="flex flex-col gap-4 pt-6 text-sm text-white/35 sm:flex-row sm:items-center sm:justify-between">
-          
-          <p>
-            © {new Date().getFullYear()} GrabCart.
-            All rights reserved.
-          </p>
+          <p>© {new Date().getFullYear()} GrabCart. All rights reserved.</p>
 
           <p className="uppercase tracking-[0.2em]">
-            Designed & Developed by
-            Abhishek Mahara
+            Designed & Developed by Abhishek Mahara
           </p>
         </div>
       </div>

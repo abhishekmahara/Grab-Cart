@@ -90,7 +90,7 @@ const Navbar = () => {
                 
 
                 <Link
-                  to="/brand-story"
+                  to="/about"
                   className="mb-6 text-lg font-medium uppercase hover:text-blue-700"
                 >
                   About Us

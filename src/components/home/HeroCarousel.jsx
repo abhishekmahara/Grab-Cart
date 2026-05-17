@@ -95,7 +95,7 @@ const HeroCarousel = () => {
             .map((item, index) => (
               <div key={index}>
                 
-                <div className="mx-auto flex min-h-[92vh] max-w-7xl flex-col-reverse items-center gap-10 px-6 pb-12 pt-10 md:grid md:grid-cols-2 md:items-center md:gap-12 md:px-10 lg:px-16">
+                <div className="mx-auto flex min-h-[92vh] max-w-7xl flex-col-reverse items-center gap-10 px-6 pb-12 md:grid md:grid-cols-2 md:items-center md:gap-12 md:px-10 lg:px-16">
 
                   {/* LEFT CONTENT */}
                   <div className="relative z-10 flex flex-col items-center text-center md:items-start md:text-left">
