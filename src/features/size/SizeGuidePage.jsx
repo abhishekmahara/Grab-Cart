@@ -86,7 +86,7 @@ const SizeGuidePage = () => {
           GrabCart Size Guide
         </p>
 
-        <h1 className="text-5xl md:text-7xl font-black uppercase leading-none mb-8 tracking-tight">
+        <h1 className="text-5xl md:text-7xl font-black uppercase leading-none mb-2 tracking-tight">
           Find Your
           <br />
           Perfect Fit

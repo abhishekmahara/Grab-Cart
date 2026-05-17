@@ -101,7 +101,7 @@ const ContactPage = () => {
       {/* SUPPORT GRID */}
       <div className="grid md:grid-cols-3 border-b bg-black border-gray-200 mt-10">
 
-        <div className="p-10 lg:p-14 border-b md:border-b-0 md:border-r border-gray-200">
+        <div className="p-10 lg:p-14 border-b md:border-b-0 md:border-r border-gray-700">
           <p className="text-xs uppercase tracking-[0.3em] text-gray-100 mb-6">
             Shipping
           </p>
@@ -116,7 +116,7 @@ const ContactPage = () => {
           </p>
         </div>
 
-        <div className="p-10 lg:p-14 border-b md:border-b-0 md:border-r  border-gray-200">
+        <div className="p-10 lg:p-14 border-b md:border-b-0 md:border-r  border-gray-700">
           <p className="text-xs uppercase tracking-[0.3em] text-gray-100 mb-6">
             Returns
           </p>

@@ -19,7 +19,7 @@ import electronicsImg from "@/assets/img/Electronics.png";
 
 const stats = [
   { value: "24/7", label: "Support ready" },
-  { value: "10-Day", label: "Easy returns" },
+  { value: "7-Day", label: "Easy returns" },
   { value: "100%", label: "Secure checkout" },
   { value: "Fast", label: "Delivery mindset" },
 ];
@@ -54,7 +54,7 @@ const AboutPage = () => {
     <main className="overflow-hidden bg-white text-black">
       {/* HERO */}
       <section className="relative border-b border-black/10 bg-white">
-        <div className="mx-auto max-w-8xl px-5 py-16 sm:px-6 md:px-8 lg:px-10 lg:py-20">
+        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-6 md:px-8 lg:px-10 lg:py-20">
           <div className="max-w-5xl">
             <div className="mb-5 pl-2">
               <p className="text-xs font-bold uppercase tracking-[0.45em] text-black">
@@ -244,7 +244,7 @@ const AboutPage = () => {
                 className="flex min-h-28 items-center gap-4 border border-white/15 p-5"
               >
                 <promise.icon
-                  className="h-8 w-8 text-blue-400"
+                  className="h-8 w-8 text-white"
                   strokeWidth={1.4}
                 />
 

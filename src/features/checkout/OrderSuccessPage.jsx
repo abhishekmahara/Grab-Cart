@@ -343,14 +343,6 @@ const OrderSuccess = () => {
               <div className="flex gap-4">
                 
 
-                <Button
-                  variant="grabcart"
-                  onClick={() =>
-                    navigate("/products")
-                  }
-                >
-                  Continue Shopping
-                </Button>
               </div>
             </div>
           </div>
