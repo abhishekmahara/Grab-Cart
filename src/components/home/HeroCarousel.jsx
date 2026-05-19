@@ -128,7 +128,7 @@ const HeroCarousel = () => {
                             `/products/${item.id}`,
                           )
                         }
-                        className="h-11 rounded-none px-8 text-[11px] font-semibold uppercase tracking-[0.25em] sm:h-12 sm:px-10"
+                        className="h-11 px-8 text-[13px] font-semibold uppercase tracking-[0.22em] sm:h-12 sm:px-10"
                       >
                         Shop Product
                       </Button>

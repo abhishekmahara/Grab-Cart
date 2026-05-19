@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-white/10 bg-black text-white">
+    <footer className=" bg-black text-white">
       {/* MAIN FOOTER */}
       <div className="mx-auto max-w-[85rem]  px-6 py-14 lg:px-10">
         {/* TOP */}
@@ -193,7 +193,7 @@ const Footer = () => {
                     }}
                     className="text-white/60 transition hover:text-white"
                   >
-                    Contact
+                  Dev Contact
                   </a>
                 </li>
               </ul>

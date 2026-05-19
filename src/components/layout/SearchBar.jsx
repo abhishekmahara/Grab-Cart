@@ -1,21 +1,15 @@
-import React, {
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { FaSearch } from "react-icons/fa";
+
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
 
   const [query, setQuery] = useState("");
-
-  const [suggestions, setSuggestions] =
-    useState([]);
+  const [suggestions, setSuggestions] = useState([]);
 
   const navigate = useNavigate();
-
   const searchRef = useRef();
 
   // FETCH SEARCH RESULTS
@@ -51,7 +45,7 @@ const SearchBar = () => {
 
   }, [query]);
 
-  // CLOSE DROPDOWN ON OUTSIDE CLICK
+  // CLOSE DROPDOWN
   useEffect(() => {
 
     const handleClickOutside = (e) => {
@@ -64,13 +58,9 @@ const SearchBar = () => {
       }
     };
 
-    document.addEventListener(
-      "mousedown",
-      handleClickOutside
-    );
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-
       document.removeEventListener(
         "mousedown",
         handleClickOutside
@@ -86,9 +76,7 @@ const SearchBar = () => {
 
     if (query.trim()) {
 
-      navigate(
-        `/products?search=${query}`
-      );
+      navigate(`/products?search=${query}`);
 
       setSuggestions([]);
     }
@@ -105,80 +93,75 @@ const SearchBar = () => {
 
   return (
 
-    <div
-      className="relative w-full"
-      ref={searchRef}
-    >
+    <div className="relative w-full max-w-md" ref={searchRef}>
 
       {/* SEARCH INPUT */}
       <form
         onSubmit={handleSearch}
-        className="flex h-10 items-center bg-gray-100 px-3"
+        className="flex h-12 items-center border bg-white px-4"
       >
 
-        <FaSearch className="mr-2 shrink-0 text-gray-500" />
+        <FaSearch className="mr-3 shrink-0 text-sm text-black" />
 
         <input
           type="text"
-          placeholder="Search products"
+          placeholder="Search"
           value={query}
-          onChange={(e) =>
-            setQuery(e.target.value)
-          }
-          className="min-w-0 flex-1 bg-transparent text-sm outline-none"
+          onChange={(e) => setQuery(e.target.value)}
+          className="min-w-0 flex-1 bg-white text-sm font-medium text-black placeholder:text-gray-500 outline-none"
         />
+
 
       </form>
 
       {/* SUGGESTIONS */}
       {suggestions.length > 0 && (
 
-        <div className="absolute left-0 top-12 z-50 w-full overflow-hidden border border-gray-200 bg-white shadow-xl">
+        <div className="absolute left-0 top-[49px] z-50 w-full border border-t-0 border-gray-200 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
 
-          {suggestions.map((item) => (
+          <div className="max-h-[420px] overflow-y-auto">
 
-            <div
-              key={item.id}
-              onClick={() =>
-                handleSuggestionClick(item.id)
-              }
-              className="flex cursor-pointer items-center gap-3 border-b border-gray-100 px-3 py-3 transition hover:bg-gray-50"
-            >
+            {suggestions.map((item) => (
 
-              {/* IMAGE */}
-              <img
-                src={item.thumbnail}
-                alt={item.title}
-                className="h-12 w-12 rounded object-cover"
-              />
+              <div
+                key={item.id}
+                onClick={() => handleSuggestionClick(item.id)}
+                className="flex cursor-pointer items-center gap-4 px-4 py-4 transition hover:bg-gray-50"
+              >
 
-              {/* INFO */}
-              <div className="min-w-0 flex-1">
+                {/* IMAGE */}
+                <div className="h-20 w-20 shrink-0 overflow-hidden bg-gray-100">
 
-                <h3 className="truncate text-sm font-medium text-black">
+                  <img
+                    src={item.thumbnail}
+                    alt={item.title}
+                    className="h-full w-full object-cover"
+                  />
 
-                  {item.title}
+                </div>
 
-                </h3>
+                {/* INFO */}
+                <div className="min-w-0 flex-1">
 
-                <p className="text-xs text-gray-500">
+                  <p className="mb-1 text-xs uppercase tracking-wide text-gray-500">
+                    {item.category}
+                  </p>
 
-                  {item.category}
+                  <h3 className="truncate text-sm font-semibold uppercase text-black">
+                    {item.title}
+                  </h3>
 
-                </p>
+                  <p className="mt-1 text-sm font-semibold text-black">
+                    ${item.price}
+                  </p>
+
+                </div>
 
               </div>
 
-              {/* PRICE */}
-              <p className="text-sm font-semibold text-black">
+            ))}
 
-                ${item.price}
-
-              </p>
-
-            </div>
-
-          ))}
+          </div>
 
         </div>
 

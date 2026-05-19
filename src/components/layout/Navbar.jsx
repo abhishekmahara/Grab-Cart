@@ -7,7 +7,7 @@ import {
 
 import React, { useState } from "react";
 
-import { HiMenuAlt3 } from "react-icons/hi";
+import { HiOutlineMenu } from "react-icons/hi";
 import { IoIosSearch } from "react-icons/io";
 import { IoBagOutline } from "react-icons/io5";
 
@@ -68,7 +68,7 @@ const Navbar = () => {
               aria-label="Open menu"
               className="flex h-10 w-10 items-center justify-center text-2xl text-blue-600 hover:text-blue-800"
             >
-              <HiMenuAlt3 />
+              <HiOutlineMenu />
             </button>
 
             {/* SIDEBAR */}
@@ -76,7 +76,7 @@ const Navbar = () => {
               <div className="flex h-full flex-col p-6">
                 {/* TOP */}
                 <div className="mb-8 flex justify-end">
-                  <HiMenuAlt3 className="text-2xl text-blue-600" />
+                  <HiOutlineMenu className="text-2xl text-blue-600" />
                 </div>
 
                 {/* LINKS */}
