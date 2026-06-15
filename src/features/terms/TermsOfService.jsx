@@ -42,22 +42,22 @@ const TermsOfService = () => {
     <div className="min-h-screen bg-white py-10 px-4 sm:px-6 lg:px-10">
       <div className="max-w-7xl mx-auto bg-white ">
         {/* HEADER */}
-<div className="px-8 md:px-16 lg:px-24 pt-16 pb-14 border-b border-black/5 text-center">
-  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-black/40 mb-5">
-    GrabCart Legal
-  </p>
+        <div className="px-8 md:px-16 lg:px-24 pt-16 pb-14 border-b border-black/5 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-black/40 mb-5">
+            GrabCart Legal
+          </p>
 
-  <h1 className="text-4xl md:text-6xl  font-black tracking-tight leading-none uppercase">
-    Terms Of Service
-  </h1>
+          <h1 className="text-4xl md:text-6xl  font-black tracking-tight leading-none uppercase">
+            Terms Of Service
+          </h1>
 
-  <p className="mt-8 max-w-3xl mx-auto text-[17px] md:text-lg leading-8 text-black/60">
-    Please read these Terms of Service carefully before using the
-    GrabCart platform. By accessing or using any part of the website,
-    you agree to comply with all terms, conditions, and policies stated
-    on this page.
-  </p>
-</div>
+          <p className="mt-8 max-w-3xl mx-auto text-[17px] md:text-lg leading-8 text-black/60">
+            Please read these Terms of Service carefully before using the
+            GrabCart platform. By accessing or using any part of the website,
+            you agree to comply with all terms, conditions, and policies stated
+            on this page.
+          </p>
+        </div>
 
         {/* CONTENT */}
         <div className="px-8 md:px-16 lg:px-24 py-14 md:py-20">
@@ -86,9 +86,6 @@ const TermsOfService = () => {
             ))}
           </div>
         </div>
-
-       
-       
       </div>
     </div>
   );

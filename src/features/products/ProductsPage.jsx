@@ -93,37 +93,27 @@ const ProductsPage = () => {
   return (
     <div>
       {/* Header */}
-<div className="bg-white">
+      <div className="bg-white">
+        <div className="px-6 lg:px-16 py-6">
+          <div className="flex items-end justify-between gap-6 flex-wrap">
+            <div>
+              <p className="text-xs uppercase tracking-[0.3em] text-neutral-600 mb-3 font-medium">
+                GrabCart Collection
+              </p>
 
-  <div className="px-6 lg:px-16 py-6">
+              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight leading-none">
+                {categoryQuery
+                  ? categoryQuery.replace("-", " ")
+                  : "Search Results"}
+              </h2>
+            </div>
 
-    <div className="flex items-end justify-between gap-6 flex-wrap">
-
-      <div>
-
-        <p className="text-xs uppercase tracking-[0.3em] text-neutral-600 mb-3 font-medium">
-          GrabCart Collection
-        </p>
-
-        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight leading-none">
-
-          {categoryQuery
-            ? categoryQuery.replace("-", " ")
-            : "Search Results"}
-
-        </h2>
-
+            <p className="text-sm text-slate-500 font-medium">
+              {filteredProducts.length} Products
+            </p>
+          </div>
+        </div>
       </div>
-
-      <p className="text-sm text-slate-500 font-medium">
-        {filteredProducts.length} Products
-      </p>
-
-    </div>
-
-  </div>
-
-</div>
       <div className="bg-white text-black min-h-screen  px-6 lg:px-16 py-10">
         <div className="flex flex-col lg:flex-row gap-16">
           {/* FILTER SIDEBAR */}

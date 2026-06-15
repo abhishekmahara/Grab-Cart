@@ -6,7 +6,16 @@
 @custom-variant dark (&:is(.dark *));
 
 body {
+
   @apply bg-white;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .cl-avatarBox {
@@ -132,6 +141,11 @@ body {
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+  input,
+  textarea,
+  select {
+    font-size: 16px;
   }
   body {
     @apply bg-background text-foreground;

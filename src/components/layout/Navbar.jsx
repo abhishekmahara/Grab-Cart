@@ -110,7 +110,7 @@ const Navbar = () => {
 
   {/* SIDEBAR */}
   <div
-    className={`fixed right-0 top-0 z-50 h-full w-[320px] bg-white shadow-2xl transition-all duration-300 ${
+    className={`fixed right-0 top-0 z-50 h-full w-[min(320px,100vw)] max-w-full bg-white shadow-2xl transition-all duration-300 ${
       isSidebarOpen
         ? "translate-x-0 opacity-100"
         : "translate-x-full opacity-0"
